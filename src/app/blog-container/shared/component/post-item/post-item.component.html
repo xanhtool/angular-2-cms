@@ -1,0 +1,67 @@
+<!-- <article class="w3agile_blog_left_grid">
+  <header>
+    <div class="w3agile_blog_left_grid_l">
+      <p>August</p>
+      <h4>25</h4>
+      <p>2016</p>
+    </div>
+    <div class="w3agile_blog_left_grid_r">
+      <h3><a [routerLink]="['/marketing/demo-post']">Need – Want and Demand? <span>marketing</span></a></h3>
+      <ul>
+        <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">Quyền Anh</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">20</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><a href="#">5</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Volup</li>
+      </ul>
+    </div>
+  </header>
+  <div class="clearfix"> </div>
+  <section>
+    <div class="w3agile_blog_left_grid_sub">
+      <a [routerLink]="['/marketing/demo-post']"><img src="../../assets/images/5.jpg" alt=" " class="img-responsive" /></a>
+    </div>
+    <div class="w3agile_blog_left_grid_sub1">
+      <h4><img src="../../assets/images/quote.png" alt=" " class="img-responsive" /></h4>
+      <div class="w3agile_blog_left_grid_sub1_pos">
+        <p>Tôi đang nói đến “Người bán hàng thành công…!”. Tôi nghĩ quan điểm về “người bán hàng” và “người bán hàng thành công” ở Việt Nam quá khác biệt so với chính ý nghĩa của nó. Hãy tham khảo ở bài viêt “ Bạn có hẳn là người bán hàng thành công? ” này nhé!</p>
+      </div>
+    </div>
+    <div class="agileits_more agileits_more1">
+      <a [routerLink]="['/marketing/demo-post']" class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Đọc thêm"><span>Đọc thêm</span></a>
+    </div>
+  </section>
+</article> -->
+
+<article class="w3agile_blog_left_grid">
+  <header>
+    <div class="w3agile_blog_left_grid_l">
+      <p>tháng {{post.postOption.date | date:"MM"}}</p> 
+      <h4>Ngày {{post.postOption.date | date:"dd"}}</h4>  
+      <p>{{post.postOption.date | date:"y"}}</p> 
+    </div>
+    <div class="w3agile_blog_left_grid_r">
+      <h3 [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]">{{post.title}}<span>{{post.postOption.category}}</span></h3>
+      <ul>
+        <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">{{post.postOption.author || 'admin'}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">{{post.postInfomation.love || 0}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><a href="#">{{post.postInfomation.share || 0}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><a href="#">{{post.postInfomation.comment || 0}}</a><i>|</i></li>
+      </ul>
+    </div>
+  </header>
+  <div class="clearfix"> </div>
+  <section>
+    <div class="w3agile_blog_left_grid_sub">
+      <a [routerLink]="[post.postOption.category+'/'+post.postOption.slug]"><img [src]="post.postOption.image.url" alt=" " class="img-responsive" /></a>
+    </div>
+    <div class="w3agile_blog_left_grid_sub1">
+      <!-- <h4></h4> -->
+      <div class="w3agile_blog_left_grid_sub1_pos">
+        <img src="../../assets/images/quote.png" alt=" " class="img-responsive quote" /><p>{{post.subtitle}}</p>
+      </div>
+    </div>
+    <div class="agileits_more agileits_more1">
+      <a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]" class="button button--rayen button--border-thin button--text-thick button--text-upper button--size-s" data-text="Đọc thêm"><span>Đọc thêm</span></a>
+    </div>
+  </section>
+</article>

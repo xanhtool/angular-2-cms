@@ -1,0 +1,15 @@
+.post-feature-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #d2dadf;
+    margin-bottom: 35px;
+}
+
+.post-feature-container a {
+    color: black;
+}
+
+.post-feature {
+    max-width: 250px;
+    margin: 30px;
+}

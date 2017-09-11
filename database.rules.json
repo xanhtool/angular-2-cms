@@ -1,0 +1,46 @@
+{
+  "rules": {
+    "users": {
+      "$uid":{
+        ".write":"$uid == auth.uid"
+      }
+    },
+    "posts": {
+      ".indexOn":["isPublished","isPinned","isHome","postOption/category","feature"],
+      "$slug": {
+        ".write":"newData.child('authorUid').val() == auth.uid || data.child('authorUid').val() == auth.uid"
+      }
+    },
+    "categories": {
+      ".write":"auth.uid != null"
+    },
+    "web-setting": {
+      ".write":"auth.uid != null"
+    },
+    "quotes": {
+      ".write":"auth.uid != null"
+    },
+    "navbar": {
+      ".write":"auth.uid != null"
+    },
+    "footer": {
+      ".write":"auth.uid != null"
+    },
+    "banner": {
+    	".write":"auth.uid != null"
+  	},
+    "faq": {
+    	".write":"auth.uid != null"
+  	},
+    "valuation": {
+      ".write":"auth.uid != null"
+    },
+    "bugs": {
+      ".write":"auth.uid != null"
+    },
+    "features": {
+      ".write":"auth.uid != null"
+    },
+   	".read": true
+  }
+}

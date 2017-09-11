@@ -1,0 +1,29 @@
+<!--Blog-->
+<div class="blog">
+		<div class="container">
+			<main appInfiniteScroller (fetch)="fetch($event)"  class="col-md-7 w3agile_blog_left" *ngIf="postList | async; let posts ;else loading">
+				<app-post-home-feature></app-post-home-feature>
+				<!-- =============================================== -->
+				<h3>Bài viết mới nhất</h3>
+				<app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+			</main>
+			<app-right-sidebar></app-right-sidebar>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!--//Blog-->
+
+<ng-template #loading>Loading...</ng-template>
+
+<!-- newsletter -->
+	<div class="agileits_w3layouts newsletter">
+		<div class="container">
+			<p class="wthree_para wthree_para1">Newsletter</p>
+			<h3 class="w3ls_head w3ls_head1">Subscribe to us</h3>
+			<form action="#" method="post">
+				<input class="email" type="email" name="Email" placeholder="Email" required="">
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+<!-- //newsletter -->

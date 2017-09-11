@@ -1,0 +1,28 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Hồ sơ <small> Giới thiệu về bản thân mình nào.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+
+<div class="row" [formGroup]="profileForm">
+  <div class="col-lg-12">
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="Tên hiển thị" formControlName="displayName" (blur)="updateName()">
+    </md-form-field>
+    <md-form-field class="example-full-width">
+      <input mdInput placeholder="Email" formControlName="email" (blur)="updateEmail()">
+    </md-form-field>
+    <app-upload-button (onDone)="updatePhoto($event)" [source]="'/users/'+user?.uid+'/'" [parentForm]="profileForm" [imageControlValue]="profileForm.get('image').value" [controlPlace]="['image']"></app-upload-button>
+  </div>
+</div>
+
+<p>Profile from database:{{user | json}}</p>
+<p>Profile form:{{profileForm.value | json}}</p>

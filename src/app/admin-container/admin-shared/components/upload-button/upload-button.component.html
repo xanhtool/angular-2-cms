@@ -1,0 +1,18 @@
+<label class="uploader">
+    <i class="icon icon-upload fa fa-upload"></i>
+    <img [src]="url" [@imageState]="imageLoaded"/>
+    <input #imageInput
+    type="file" 
+    name="file" 
+    accept="image/*" 
+    (change)="readUrl($event)">
+    <button class="abort-button" [@imageState]="imageLoaded" (click)="deleteImage()">
+        <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+    </button>
+    <md-progress-bar [@loadingState]="loading"
+        class="example-margin"
+        color="primary"
+        mode="determinate"
+        [value]="loadedPercent">
+    </md-progress-bar>
+</label>

@@ -1,0 +1,7 @@
+<app-breadcrumb></app-breadcrumb>
+<div class="blog">
+	<div class="container">
+		<app-post-detail-article *ngIf="post | async as post" [post]="post"></app-post-detail-article>
+		<app-right-sidebar></app-right-sidebar>
+	</div>	
+</div>

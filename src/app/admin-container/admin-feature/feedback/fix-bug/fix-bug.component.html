@@ -1,0 +1,52 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Đề nghị sửa lỗi <small> gửi bất kì con lỗi nào mà bạn gặp phải để bạn không còn gặp lại chúng nữa.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+<div class="row" [formGroup]="bugForm">
+    <div class="col-lg-12">
+        <h3 class="title">Mô tả tình huống</h3>
+        <md-form-field class="input-field">
+            <input mdInput placeholder="Vị trí bạn gặp lỗi ở đâu?" formControlName="place">
+        </md-form-field>
+        <md-form-field class="input-field">
+            <input mdInput placeholder="Bạn bị lỗi như thế nào?" formControlName="how">
+        </md-form-field>
+        <md-form-field class="input-field">
+            <textarea mdTextareaAutosize mdInput placeholder="Khi tôi đang làm những việc sau thì bị lỗi" formControlName="step"></textarea>
+        </md-form-field>
+        <md-form-field class="input-field">
+            <input mdInput placeholder="Tôi mong muốn sau khi sửa lỗi chương trình sẽ chạy như sau" formControlName="expect">
+        </md-form-field>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="title">Xem lại thư đề nghị</h3>
+        <p>Kính gửi đội ngũ phát triển,</p>
+        <p>Tôi tên là <span class="user-input">{{username}}</span>, hôm nay tôi gặp một con bug với nội dung như sau:</p>
+        <p>Trong lúc tôi đang tung tăng sử dụng app ở vị trí <span class="user-input">{{bugForm.value.place}}</span></p>
+        <p>Thì bỗng nhiên tôi bị <span class="user-input">{{bugForm.value.how}}</span></p>
+        <p>Cụ thể, khi tôi thực hiện những bước này thì ngay lập tức xảy ra lỗi</p>
+        <p><span class="user-input">{{bugForm.value.step}}</span></p>
+        <p>Vì thế tôi muốn <span class="user-input">{{bugForm.value.expect}}</span></p>
+        <p>Rất mong đội ngũ phát triển nhanh chóng xử lý lỗi để công việc của tôi đạt hiệu quả cao nhất.</p>
+        <p>Xin cảm ơn</p>
+    </div>
+</div>
+
+<button (click)="sendBug()" md-raised-button color="accent" class="send"><span><i class="fa fa-paper-plane-o send-icon" aria-hidden="true"></i> </span> Gửi bug</button>
+
+<!-- 
+<p>Form value:{{bugForm.value | json}}</p>
+<p>Form Valid:{{bugForm.valid}}</p> -->

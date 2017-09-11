@@ -1,0 +1,8 @@
+:host article {
+	margin-bottom:3em;
+}
+
+.quote {
+	width: 25px;
+    transform: scaleX(-1)translateX(25px)translateY(-10px);
+}

@@ -1,0 +1,40 @@
+@media screen and (min-width: 480px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+} 
+
+.dropdown-menu {
+    width: 600px
+}
+
+.dropdown-menu h4{
+    margin:0 0 5px 0;
+}
+
+.dropdown-menu-left {
+    width: 40%;
+    display: inline-block;
+    padding: 5px 20px 10px 20px;
+}
+
+.dropdown-menu-right {
+    width: 60%;
+    float: right;
+    padding: 5px 20px 10px 20px;
+}
+
+.dropdown-menu-right ul{
+    width: 50%;
+    float: left;
+}
+
+.dashboard {
+    width: 80px;
+    float: left;
+    margin-top: 14px;
+    transform: translateX(25px);
+    cursor: pointer;
+}
+

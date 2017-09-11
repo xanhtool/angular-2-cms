@@ -1,0 +1,41 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Cài đặt Slider <small> Thay đổi nội dung trích dẫn được hiển thị trên trang chủ.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+<div [formGroup]="quoteForm" *ngIf="quotes | async">
+    <div class="row" formArrayName="quoteFormArray">
+        <div class="col-lg-12" >
+            <md-card class="example-card" *ngFor="let quote of quoteFormArray.controls; let i=index" [formGroupName]="i" [appMakeDraggable]="quote.value"  appMakeDroppable (dropped)="onDrop($event, quote.value)">
+                <md-form-field>
+                    <input mdInput placeholder="Tác giả" formControlName="author" (blur)="updateQuote(i,quote.value)">
+                    <md-icon class="fa fa-times-circle-o fa-2x" aria-hidden="true" (click)="deleteQuote(i)"></md-icon>
+                </md-form-field>
+                <md-form-field>
+                    <textarea mdInput placeholder="Trích dẫn" formControlName="content" (blur)="updateQuote(i,quote.value)"></textarea>
+                </md-form-field>
+            </md-card>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+                <button md-button color="primary" (click)="addQuote()">
+                    <md-icon class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></md-icon> Thêm trích dẫn
+                </button>
+        </div>
+        <!-- <div class="col-lg-2">
+                <button md-raised-button color="accent" (click)="saveQuote()">
+                    <md-icon class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></md-icon> Lưu trích dẫn
+                </button>
+        </div> -->
+    </div>
+</div>
+

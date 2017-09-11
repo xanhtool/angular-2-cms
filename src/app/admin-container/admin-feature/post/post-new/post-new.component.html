@@ -1,0 +1,86 @@
+<div class="row">
+  <!--Optional sidebar-->
+  <md-sidenav-container class="example-container">
+    
+    <!--SIDENAV-->
+    <md-sidenav align="end" #sidenavright  class="app-sidenav">
+      <app-sidenav-post-option [parentForm]="postForm"></app-sidenav-post-option>
+    </md-sidenav>
+    <!--/SIDENAV-->
+    <!--SIDENAV CONTENT-->
+    <div class="example-sidenav-content" [formGroup]="postForm" novalidate>
+
+      <!--MAIN INPUT-->
+      <div class="col-lg-12 left-screen">
+        <!--STATUS BUTTON-->
+        <div class="fixed-action-btn horizontal">
+          <div class="cogs"  (click)="toogleToolFlower()">
+            <button md-fab mdTooltip="Hiện/ẩn hoa công cụ" mdTooltipPosition="before"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></button>
+            <md-spinner class="flower-loading" *ngIf="eventService.subscribeEvent('postUploading') | async"></md-spinner>
+          </div>
+          <ul  [class.showFlower]="show">
+            <li><button mdTooltip="Xuất bản" md-mini-fab (click)="publish(postForm.getRawValue(),true)"><i class="fa fa-share-square-o fa-lg" aria-hidden="true"></i></button></li>
+            <li ><button mdTooltip="Lưu nháp" md-mini-fab (click)="saveDraft(postForm.getRawValue(),false)"><i class="fa fa-save fa-lg" aria-hidden="true"></i></button></li>
+            <li><button mdTooltip="Thêm thông tin" md-mini-fab (click)="sidenavright.toggle()"><i class="fa fa-cog fa-lg" aria-hidden="true"></i></button></li>
+          </ul>
+        </div>
+        <!--/STATUS BUTTON-->
+
+      <!-- MAIN INPUT -->
+        <div class="row">
+          <div class="col-lg-9">
+            <md-form-field class="title">
+              <textarea #title="mdTextareaAutosize" mdTextareaAutosize mdInput placeholder="Tiêu đề của bài viết mới" formControlName="title" required="true"></textarea>
+            </md-form-field>
+          </div>
+          <div class="col-lg-3" formGroupName="postOption">
+            <!--CATEGORY-->
+            <md-select mdTooltip="Xác định bài viết thuộc mục nào"  class="full-width" placeholder="Danh mục" formControlName="category"  required="true">
+                <md-option  *ngFor="let category of categories" [value]="category.url">{{category.name}}</md-option>
+            </md-select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <md-form-field class="subtitle">
+              <textarea #subtitle="mdTextareaAutosize" mdTextareaAutosize mdInput placeholder="Tiêu đề phụ" 
+                         formControlName="subtitle" required="true"></textarea>
+            </md-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="custom-theme" [froalaEditor]='options' formControlName="content" required="true">Hello, Froala!</div>
+          </div>
+        </div>
+      <!-- /END MAIN INPUT -->
+      </div>
+      
+      
+
+      <!--MODAL BOX BUTTON-->
+      <div class="model-preview">
+        <a class="btn icon-btn btn-info"  data-toggle="modal" data-target="#myModal"><span class="glyphicon btn-glyphicon glyphicon-eye-open img-circle text-info"></span>Xem trước</a>
+      </div>
+      <!--/MODAL BOX BUTTON-->
+    </div>
+    
+  </md-sidenav-container>
+  <!--/Optional sidebar-->
+
+</div>
+
+
+<!-- <p>Form value: {{ postForm.value | json }}</p> -->
+<p>Form status: {{ postForm.status | json }}</p> 
+<p>Form author Uid: {{ postForm.value['authorUid'] | json }}</p> 
+<p>Form is published: {{ postForm.value['postMark']['isPublished'] | json }}</p> 
+
+
+<app-post-preview-dialog [post]="postForm.getRawValue()"></app-post-preview-dialog>
+
+
+
+

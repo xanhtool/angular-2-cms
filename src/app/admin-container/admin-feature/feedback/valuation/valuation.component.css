@@ -1,0 +1,28 @@
+.emoji {
+    font-size: xx-large;
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+.emoji-big {
+    transform: scale(1.5);
+    -webkit-transition: ease-in-out 0.3s;
+    -moz-transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.3s;
+}
+
+.valuation {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.send {
+    margin-top: 40px;
+}
+.send-icon {
+    margin-right: 5px;
+}
+
+.opinion {
+    color: grey;
+}

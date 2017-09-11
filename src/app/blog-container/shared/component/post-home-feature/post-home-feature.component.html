@@ -1,0 +1,24 @@
+<h3>Bài viết tiêu biểu</h3>
+<div class="post-feature-container" *ngIf="homeFeaturePosts | async; let posts ;else loading">
+  <div class="post-feature" *ngFor="let post of posts">
+    <h3><a [routerLink]="['/marketing/'+post.postOption.slug]">{{post.title}}</a></h3>
+    <a [routerLink]="['/marketing/'+post.postOption.slug]"><img [src]="post.postOption.image.url" class="img-responsive post-feature-img"/></a>
+  </div>
+
+  <!-- <div class="post-feature">
+    <h3><a [routerLink]="['/marketing/demo-post']">Need – Want and Demand? <span>marketing</span></a></h3>
+    <a [routerLink]="['/marketing/demo-post']"><img src="../../assets/images/5.jpg" class="img-responsive post-feature-img"/></a>
+  </div>
+
+  <div class="post-feature">
+    <h3><a [routerLink]="['/marketing/demo-post']">Need – Want and Demand? <span>marketing</span></a></h3>
+    <a [routerLink]="['/marketing/demo-post']"><img src="../../assets/images/5.jpg" class="img-responsive post-feature-img"/></a>
+  </div>
+
+  <div class="post-feature">
+    <h3><a [routerLink]="['/marketing/demo-post']">Need – Want and Demand? <span>marketing</span></a></h3>
+    <a [routerLink]="['/marketing/demo-post']"><img src="../../assets/images/5.jpg" class="img-responsive post-feature-img"/></a>
+  </div> -->
+</div>
+
+<ng-template #loading>Loading...</ng-template>

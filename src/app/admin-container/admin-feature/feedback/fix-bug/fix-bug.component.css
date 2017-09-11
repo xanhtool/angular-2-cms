@@ -1,0 +1,18 @@
+.user-input {
+    color: grey;
+}
+
+.input-field {
+    width: 100%;
+}
+
+.title {
+    margin: 10px 0!important;
+}
+
+.send {
+    margin-top: 40px;
+}
+.send-icon {
+    margin-right: 5px;
+}

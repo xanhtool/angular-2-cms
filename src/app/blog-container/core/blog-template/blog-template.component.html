@@ -1,0 +1,46 @@
+<div class="navbar">
+  <div class="loader" [class.loader__loading]="loading"></div>
+  <div class="banner"  [style.max-height]="bannerful ? '700px': '90px'">
+    <img *ngIf="banner" [class.banner-img__loading]="loading" #imageBanner class="banner-img" [src]="sanitizer.bypassSecurityTrustUrl(banner.url)" alt=""  [appDraggable]="isDragging" [style.top]="banner.top"> 
+    <app-slider></app-slider>
+    <div class="container" >
+      <app-navbar></app-navbar>
+    </div>
+    <div class="dropdown update-banner">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-camera-retro" aria-hidden="true" ></i> Cập nhật ảnh bìa
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li>
+          <a>
+            <label class="banner-uploader" for="banner">
+              Chọn ảnh 
+              <input id ="banner" #imageInput
+              type="file" 
+              name="file" 
+              accept="image/*" 
+              (change)="readFile($event)">
+            </label>
+          </a>
+        </li>
+        <li><a (click)="editting(true)">Sửa vị trí</a></li>
+      </ul>
+    </div>
+      
+    <div class="save-changes" [class.display]="isEditting"> 
+      <button type="button" class="btn btn-default" (click)="cancelEditBanner()">Hủy</button>
+      <button type="button" class="btn btn-primary" (click)="saveBanner()">Lưu thay đổi</button>
+    </div>
+  </div>
+</div>
+<!-- 
+<button (click)="editting(!isEditting)">sửa vị trí:</button>
+<p>is dragging: {{isDragging}}</p>
+<p>is editting: {{isEditting}}</p> -->
+
+<div class="blog-template">
+  <router-outlet></router-outlet>
+</div>
+
+
+
+ <app-footerbar class="footerbar"></app-footerbar>

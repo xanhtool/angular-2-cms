@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style 
+files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.loader {
+    position: relative;
+}
+
+.loader img {
+    position: fixed;
+    z-index: 999;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

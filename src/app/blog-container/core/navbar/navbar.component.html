@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header navbar-left">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <span><a href="/admin/dashboard"><img [routerLink]="['/admin/dashboard']" class="dashboard" *ngIf="blogAuthService.user | async as user" src="../../../../assets/images/logo.png" alt="admin"> </a></span>
+  <h1><a class="navbar-brand" routerLink="/" routerLinkActive="active" >QA<span> Marketing Jouney </span></a>
+  </h1>
+ 
+  <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav special-font">
+ 
+      <li class="dropdown" *ngFor="let category of categoryList">
+        <a [routerLink]="['/'+category['url']]" class="dropdown-toggle" >{{category['name']}}</a>
+        <ul class="dropdown-menu"> 
+          <div class="dropdown-menu-left">
+            <h4>Thông tin chung</h4>
+             <p>{{category.description}}</p> 
+          </div>
+          
+          <div class="dropdown-menu-right">
+            <ul>
+              <h4>Bài viết mới</h4>
+               <li *ngFor="let post of category['lastestPost']"><a [routerLink]="[post.postOption.category+'/'+post.postOption.slug]">{{post.title}}</a></li>
+            </ul>
+            <ul>
+              <h4>Bài viết nổi bật</h4>
+              <li *ngFor="let post of category['featurePost']"><a [routerLink]="[post.postOption.category+'/'+post.postOption.slug]">{{post.title}}</a></li>
+            </ul>
+          </div>
+        </ul>
+      </li>
+      
+    </ul>
+  </div>
+</nav>

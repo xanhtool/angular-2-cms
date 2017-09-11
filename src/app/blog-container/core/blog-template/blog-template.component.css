@@ -1,0 +1,145 @@
+@font-face {
+    font-family: Lobster;
+    src: url("../../../../assets/fonts/Lobster-Regular.ttf");
+}
+@font-face {
+    font-family: Pattaya;
+    src: url("../../../../assets/fonts/Pattaya regular.ttf");
+}
+
+:host {
+    font-size: 100%;
+	font-family: 'Open Sans', sans-serif;
+	background:#ffffff;
+	margin: 0;
+}
+:host /deep/ p,:host /deep/ ul li,:host /deep/ ol li{
+	margin:0;
+	font-size:14px;
+}
+
+:host/deep/ h3,:host/deep/ h1,:host/deep/ h4  {
+	font-family: 'Lobster', cursive;
+	margin:10px 0;
+}
+
+/deep/.special-font > li > a {
+    font-family: 'Pattaya', sans-serif;
+    font-size: x-large;
+}   
+
+:host /deep/ ul,label{
+	margin:0;
+	padding:0;
+}
+:host /deep/ a:hover{
+	text-decoration:none;
+}
+
+
+/* slider */
+app-slider {
+	position: absolute;
+	bottom: 120px;
+	left: 0; 
+	right: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+/*-- banner --*/
+.banner{
+	overflow: hidden;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	-ms-background-size:cover;
+	height:700px;
+	position: relative;
+}
+
+.banner-img__loading {
+	filter: blur(6px);
+    opacity: 0.3;
+}
+
+.banner .container {
+	position: absolute;
+    top: 0;
+}
+
+.banner-img {
+	width:100%;
+	position: absolute;
+	top:0;
+}
+
+.save-changes {
+	display: none;
+	position: absolute;
+    bottom: 60px;
+    right: 50px;
+}
+
+
+
+.display {
+	display: block;
+}
+
+.banner-uploader input {
+	display: none;
+	
+}
+
+.banner-uploader {
+	font-weight: normal;
+	padding-right: 55px;
+}
+
+
+.update-banner {
+	position: absolute;
+	bottom: 60px;
+    left: 50px;
+}
+
+
+/* loading spin */
+
+.loader__loading {
+	position: absolute;
+	position: absolute;
+	top: 0;
+	bottom:0;
+	left: 0; 
+	right: 0; 
+	margin-left: auto; 
+	margin-right: auto; 
+	margin-top: auto;
+	margin-bottom: auto;
+	z-index: 1;
+	display: block!important;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

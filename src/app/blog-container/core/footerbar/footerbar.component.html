@@ -1,0 +1,49 @@
+<!-- footer -->
+	<div class="footer" *ngIf="footer | async; let footer">
+		<div class="agileinfo_footer_bottom">
+			<div class="container">
+				<div class="col-md-6 agileinfo_footer_bottom_grid">
+					<h3>Về <span>Tôi</span></h3>
+					<div [froalaView]="footer.aboutAuthor"></div>
+					<img [src]="footer.image.url"  class="img-responsive pointer author-img" [routerLink]="['/about']">
+					<ul class="social-nav model-3d-0 footer-social w3_agile_social social-spacing">
+						<li><a href="https://www.facebook.com/p.k.quyen.anh?fref=ts" class="facebook">
+							  <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+							  <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div></a></li>
+						<!-- <li><a href="#" class="twitter">
+							  <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+							  <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div></a></li>
+						<li><a href="#" class="instagram">
+							  <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+							  <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div></a></li>
+						<li><a href="#" class="pinterest">
+							  <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+							  <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div></a></li> -->
+					</ul>
+				</div>
+				<div class="col-md-6 agileinfo_footer_bottom_grid">
+					<h3>Về <span>Blog</span></h3>
+					<div [froalaView]="footer.aboutWebsite"></div>
+				</div>
+
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="agileinfo_footer_bottom1" *ngIf="websiteName | async; let websiteName">
+			<div class="container">
+				<div class="agileinfo_footer_bot_left">
+					<ul>
+						<li><a href="/">{{websiteName.titleTag}}</a><span> |</span></li>
+						<li>{{websiteName.slogan}} <span>{{websiteName.contact}}</span></li>
+					</ul>
+				</div>
+				<div class="agileinfo_footer_bot_right">
+					<p>Created by <a href="http://facebook.com/hiepsieuviet">Xanhtool</a> |</p>
+					<p>© {{year}} {{websiteName.titleTag}}. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+					<p> Base on <a href="https://angular.io">Angular</a> and <a href="https://firebase.google.com">Firebase</a> Technology</p>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->

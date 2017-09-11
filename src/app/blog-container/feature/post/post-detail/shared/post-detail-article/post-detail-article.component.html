@@ -1,0 +1,59 @@
+<div class="col-md-7 w3agile_blog_left">
+  <div class="w3agile_blog_left_grid">
+    <div class="w3agile_blog_left_grid_l">
+      <p>tháng {{post.postOption.date | date:"M"}}</p> 
+      <h4>Ngày {{post.postOption.date | date:"dd"}}</h4>  
+      <p>{{post.postOption.date | date:"y"}}</p> 
+    </div>
+    <div class="w3agile_blog_left_grid_r">
+      <h3>{{post.title}}<span>{{post.postOption.category}}</span></h3>
+      <ul>
+        <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">{{post.postOption.author || 'admin'}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">{{post.postInfomation.love || 0}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-tag" aria-hidden="true"></span><a href="#">{{post.postInfomation.share || 0}}</a><i>|</i></li>
+        <li><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><a href="#">{{post.postInfomation.comment || 0}}</a><i>|</i></li>
+      </ul>
+    </div>
+    <div class="clearfix"> </div>
+    <div class="w3agile_blog_left_grid_sub">
+      <img [src]="post.postOption.image.url" alt=" " class="img-responsive" />
+    </div>
+
+    <div class="w3agile_blog_left_grid_sub1">
+  
+      <!-- <div class="w3agile_blog_left_grid_sub1_pos">
+        <p>Tôi đang nói đến “Người bán hàng thành công…!”. Tôi nghĩ quan điểm về “người bán hàng” và “người bán hàng thành công” ở Việt Nam quá khác biệt so với chính ý nghĩa của nó. Hãy tham khảo ở bài viêt “ Bạn có hẳn là người bán hàng thành công? ” này nhé!</p>
+      </div> -->
+      <div class="w3agile_blog_left_grid_sub1_pos">
+        <img src="../../assets/images/quote.png" alt=" " class="img-responsive quote" />
+        <p>{{post.subtitle}}</p>
+      </div>
+    </div>
+
+    <!-- <div class="w3agile_blog_left_grid_sub2">
+      <p>Đứng ở vai trò là người cung cấp giá trị cho khách hàng, hẳn rằng bạn cần phải tìm hiểu khách hàng đang có “nhu cầu” cái gì? Họ muốn gì từ bạn và họ hi vọng gì từ sản phẩm bạn mang đến. Đơn giản vì khi khách hàng nhận được giá trị thì bạn mới chính là người bán hàng thành công.</p>
+    </div>
+    <div class="w3agile_blog_left_grid_sub2">
+      <p> Nhưng thực tế cho thấy không phải bất kỳ ai cũng hiểu được những điều trên của khách hàng. Marketing chuyên nghiệp sẽ lý giải cho bạn thấy điều đó.</p>
+      <p>Trong ngành Marketing, khách hàng cũng là điểm mấu chốt cho sự thành bại của công ty. Đơn giản vì không hiểu khách hàng, công ty đấy coi như chết. Vậy, vấn đề đặt ra là “khách hàng cần gì?”</p>
+      <p>Nhu cầu của khách hàng chia ra làm loại cơ bản: </p>
+      <ul>
+        <li>
+          <p>-	Need: Nhu cầu cơ bản, thiếu hụt một cái gì đấy và cảm thấy cần được thỏa mãn. Giống như việc trời quá nóng và bạn cảm thấy cần 1 cơn gió. Và mặc nhiên sẽ chưa nghĩ đến “cơn gió” đấy lấy đâu ra. </p>
+          <p>-	Want: là nhu cầu (need) + xác nhận một sản phẩm cụ thể. </p>
+          <p>-	Demand: là nhu cầu về 1 sản phẩm cụ thể (Want) và có khả năng chi trả. </p>
+        </li>
+      </ul>
+      <p>
+        Chung quy lại, dù là bạn hay khách hàng của bạn sẽ luôn có những khía cạnh này trong cuộc sống. Cần cái gì đấy, nhưng chẳng cụ thể. Muốn một cái xác thực nhưng chẳng biết có thể có được nó hay không?. Và cuối cùng là tính toán và có thể có được 1 cái gì đấy. 
+      </p>
+      <p>Ví dụ: Bạn đang suy nghĩ đến phương thức đi lại. </p>
+      <p>Need: Di chuyển, đi lại một cách (cá nhân bạn) thoải mái hoặc (người khác) nhanh chóng…</p>
+      <p>Want: Thực tế, tôi đang nghĩ đến Lamborghini, Exciter, xe đạp địa hình. </p>
+      <p>Demand: Trong khả năng chi trả của tôi, tôi chi có thể mua được Super Dream. </p>
+      <p>Rất thực tế, và khách hàng của bạn cũng sẽ đang như vậy. Họ có nhu cầu, có mong muốn và có khả năng chi trả của riêng mình. Đừng tin lời họ nói, đôi khi chính họ cũng không thể xác định được khả năng chi trả cũng như chính xác cái họ cần. Và nhiệm vụ đấy dành cho bạn – Marketer. Hãy tìm ra nhu cầu của họ/mong muốn và cả khả năng chi trả nữa. </p>
+    </div> -->
+
+    <div [froalaView]="post.content"></div>
+  </div>
+</div>
