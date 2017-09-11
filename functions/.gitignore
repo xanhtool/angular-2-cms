@@ -43,4 +43,4 @@ yarn-error.log
 Thumbs.db
 
 # config
-/src/enviroments/config.ts
+/src/environments/config.ts

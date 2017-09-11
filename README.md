@@ -16,6 +16,7 @@ STEP 2: run `yarn` or `npm install`
 
 STEP 3: go to /functions and run: `yarn` or `npm install`
 
+USING: goto [website](https://apt-port-161714.firebaseapp.com/) or [login](https://apt-port-161714.firebaseapp.com/login) to login to dashboard
 
 # Website
 

@@ -1,3 +1,4 @@
+import { AdminNotfoundComponent } from './admin-notfound/admin-notfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './faq/faq.component';
 import { CategoryComponent } from './category/category.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
     { 
       path: 'profile', 
       component: ProfileComponent,
+    },
+    { 
+      path: '404', 
+      component: AdminNotfoundComponent,
     },
   ]
   },

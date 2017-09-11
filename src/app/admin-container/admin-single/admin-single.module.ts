@@ -9,6 +9,7 @@ import { SettingWebsiteComponent } from './setting-website/setting-website.compo
 import { CategoryComponent } from './category/category.component';
 import { FaqComponent } from './faq/faq.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdminNotfoundComponent } from './admin-notfound/admin-notfound.component';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent, 
     DashboardComponent, 
     SettingWebsiteComponent, 
-    CategoryComponent,FaqComponent, ProfileComponent, 
+    CategoryComponent,FaqComponent, ProfileComponent, AdminNotfoundComponent, 
   ],
 
 })

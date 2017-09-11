@@ -14,11 +14,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    AdminContainerRoutingModule,
     AdminCoreModule,
     AdminSharedModule,
     AdminSingleModule,
     AdminFeatureModule,
+    AdminContainerRoutingModule,
   ],
   declarations: [],
   providers: [SaveGuard]
