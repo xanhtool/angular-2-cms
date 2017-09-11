@@ -62,7 +62,9 @@ export class PostNewComponent implements OnInit {
   }
 
    getCategories() {
+     console.log("bắt đầu lấy category")
     this.adminComponentService.getCategories()
+    .do((c) => console.log('category làm sao ',c))
     .do(categories => {
           let postCategory = this.postForm.get(['postOption','category']).value;
           let CategoryUrls = Object.values(categories).map(category => category.url)
@@ -116,6 +118,7 @@ export class PostNewComponent implements OnInit {
     .switchMap(() => this.route.paramMap)
     .map((params: ParamMap) => this.slug = params.get('slug'))
     .do(() => {
+      this.getCategories();
       this.postSendValue = this.postForm.getRawValue()
     }) // copy empty value to open save confirm
     .filter(slug => slug != null) // if this is not a new post
