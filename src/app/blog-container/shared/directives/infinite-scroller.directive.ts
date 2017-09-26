@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Directive, AfterViewInit, ElementRef, Input, EventEmitter, Output, Renderer2 } from '@angular/core';
 
@@ -13,26 +14,26 @@ import { Subject } from "rxjs/Subject";
   selector: '[appInfiniteScroller]'
 })
 export class InfiniteScrollerDirective implements AfterViewInit {
-
-  private scrollEvent$;
-  private userScrolledDown$;
-  private requestStream$;
-  private requestOnScroll$;
-
-  // @Input() immediateCallback:boolean = false;
-  // @Input() scrollPercent = 70;
-  @Output('fetch')  fetch = new EventEmitter();
+  scrollEvent$= new Subject();
+  userScrolledDown$:Observable<any>;
+  requestStream$:Observable<any>;
+  requestOnScroll$:Observable<any>;
+  isExpected = new BehaviorSubject(false);
 
   isUserScrollingDown = (positions) => {
     return positions[0] < positions[1];
   }
 
   isScrollExpectedPercent = (position) => {
-    console.log(position,this.elm.nativeElement.offsetTop+this.elm.nativeElement.offsetHeight)
-    return position + 240 > this.elm.nativeElement.offsetTop+this.elm.nativeElement.offsetHeight;
+    let trigger = position[1] > this.elm.nativeElement.offsetHeight
+    this.isExpected.next(trigger)
+    return trigger;
   }
 
-  constructor(private elm: ElementRef,private renderer2:Renderer2) { }
+  constructor(
+    private elm: ElementRef,
+    private renderer2:Renderer2
+  ) { }
 
   ngAfterViewInit() {
     this.registerScrollEvent();
@@ -41,22 +42,22 @@ export class InfiniteScrollerDirective implements AfterViewInit {
   }
 
   private registerScrollEvent() {
-    this.scrollEvent$ = new Subject();
-    this.renderer2.listen('window','wheel',(event) => this.scrollEvent$.next(event))
+    this.renderer2.listen('window','scroll',(event) => this.scrollEvent$.next(event))
   }
 
   streamScrollEvents() {
     this.userScrolledDown$ = this.scrollEvent$
-    .map((e: any) => e.pageY)
+    .map((e: any) => e.target.body.scrollTop)
     .pairwise()
-    .filter(positions => this.isUserScrollingDown(positions) && this.isScrollExpectedPercent(positions[1]))
+    .filter(positions => this.isUserScrollingDown(positions) && this.isScrollExpectedPercent(positions))
+    .mergeMap(positions => this.isExpected)
   }
   
 
   requestCallbackOnScroll() {
     this.requestOnScroll$ = this.userScrolledDown$;
     this.requestOnScroll$
-    .map(() => this.fetch.emit(1))
+    .distinct()
     .subscribe(() => { });
   }
 

@@ -1,5 +1,5 @@
-	<aside class="col-md-5 w3agile_blog_left">
-				<div class="agileits_search">
+	<aside class="col-md-4 w3agile_blog_left">
+				<div class="agileits_search" *ngIf="admin | async; let admin">
 					<form action="#" method="post">
 						<input class="email" type="email" name="Email" placeholder="Email" required="">
 						<input type="submit" value="Send">
@@ -19,22 +19,8 @@
 					<h3>Danh mục</h3>
 					<ul>
 						<li *ngFor="let category of categories"><a [routerLink]="'/'+[category.url]"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>{{category.name}}</a></li>
-						<!-- <li><a [routerLink]="['/marketing']"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>Marketing</a></li>
-						<li><a [routerLink]="['/book']"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>Sách</a></li>
-						<li><a [routerLink]="['/video']"><span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>Video tạo động lực</a></li> -->
 					</ul>
 				</div>
-				<!-- <div class="agileinfo_calender">
-					<h3>Calendar</h3>
-					<div class="agileinfo_calender_grid">
-						<table id="calendar-demo" class="calendar"></table>
-						<script src="js/dcalendar.picker.js"></script>
-						<script>
-							$('#demo').dcalendarpicker();
-							$('#calendar-demo').dcalendar(); //creates the calendar
-						</script>
-					</div>
-				</div> -->
 				<div class="wthree_faq"  *ngIf="faq | async; let questions">
 					<h3>FAQ's</h3>
 					<div class="panel-group wthree_panel" id="accordion" role="tablist" aria-multiselectable="true">
@@ -54,91 +40,39 @@
 								</div>
 							</div>
 					  </div>
-					  <!-- <div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingTwo">
-								<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Có nên giữ calendar ko ?
-								</a>
-								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-								<div class="panel-body panel_text">
-									đề nghị anh quyền anh trả lời.
-								</div>
-							</div>
-					  </div>
-					  <div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingThree">
-								<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i>Có nên giữ FAQ này ko ? 
-								</a>
-								</h4>
-							</div>
-							<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-								<div class="panel-body panel_text">
-									đề nghị anh quyền anh trả lời.
-								</div>
-							</div>
-					  </div>
-					  <div class="panel panel-default">
-							<div class="panel-heading" role="tab" id="headingFour">
-								<h4 class="panel-title asd">
-								<a class="pa_italic collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span><i class="glyphicon glyphicon-minus" aria-hidden="true"></i> Quyền Anh có người yêu chưa?
-								</a>
-								</h4>
-							</div>
-							<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-								<div class="panel-body panel_text">
-									Quyền Anh thích con trai nên hiệng giờ chưa có bạn trai.
-								</div>
-							</div>
-					  </div> -->
 					</div>
 				</div>
-				<div class="w3ls_recent_posts" *ngIf="recentPost | async; let recentPost">
-					<h3>Bài viết gần đây</h3>
-					<div class="agileits_recent_posts_grid" *ngFor="let post of recentPost">
+				<div class="w3ls_recent_posts" *ngIf="mostViewPosts | async; let mostViewPosts">
+					<h3>Bài viết được xem nhiều nhất</h3>
+					<div class="agileits_recent_posts_grid" *ngFor="let post of mostViewPosts">
 						<div class="agileits_recent_posts_gridl">
-							<a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]"><img [src]="post.postOption.image.url" [alt]="post.postOption.image.name" class="img-responsive"></a>
+							<a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]"><img [src]="post.postOption.image.url" [alt]="'lỗi ảnh bìa'" class="img-responsive"></a>
 						</div>
 						<div class="agileits_recent_posts_gridr">
 							<h4><a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]">{{post.title}}</a></h4>
 							<ul>
-								<li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">{{post.postInfomation.love || 0}}</a></li>
+								<li><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><a href="#">{{post.postInformation?.view || 0}}</a></li>
 								<li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{post.postOption.date | date}}</li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<!-- <div class="agileits_recent_posts_grid">
+				</div>
+				<div class="w3ls_recent_posts" *ngIf="recentPosts | async; let recentPosts">
+					<h3>Bài viết gần đây</h3>
+					<div class="agileits_recent_posts_grid" *ngFor="let post of recentPosts">
 						<div class="agileits_recent_posts_gridl">
-							<a href="single.html"><img src="../../assets/images/12.jpg" alt=" " class="img-responsive"></a>
+							<a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]"><img [src]="post.postOption.image.url" [alt]="'lỗi ảnh bìa'" class="img-responsive"></a>
 						</div>
 						<div class="agileits_recent_posts_gridr">
-							<h4><a href="single.html">Class aptent taciti sociosqu</a></h4>
+							<h4><a [routerLink]="['/'+post.postOption.category+'/'+post.postOption.slug]">{{post.title}}</a></h4>
 							<ul>
-								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="#">5</a></li>
-								<li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>8:45 AM</li>
+								<li><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><a href="#">{{post.postInformation?.love || 0}}</a></li>
+								<li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{post.postOption.date | date}}</li>
 							</ul>
 						</div>
 						<div class="clearfix"> </div>
 					</div>
-					<div class="agileits_recent_posts_grid">
-						<div class="agileits_recent_posts_gridl">
-							<a href="single.html"><img src="../../assets/images/11.jpg" alt=" " class="img-responsive"></a>
-						</div>
-						<div class="agileits_recent_posts_gridr">
-							<h4><a href="single.html">Maecenas eget erat bibendum</a></h4>
-							<ul>
-								<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="#">6</a></li>
-								<li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>9:30 AM</li>
-							</ul>
-						</div>
-						<div class="clearfix"> </div>
-					</div> -->
 				</div>
 				
 			</aside>

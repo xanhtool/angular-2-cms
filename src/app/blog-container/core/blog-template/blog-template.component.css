@@ -1,15 +1,10 @@
 @font-face {
-    font-family: Lobster;
-    src: url("../../../../assets/fonts/Lobster-Regular.ttf");
-}
-@font-face {
     font-family: Pattaya;
     src: url("../../../../assets/fonts/Pattaya regular.ttf");
 }
 
 :host {
     font-size: 100%;
-	font-family: 'Open Sans', sans-serif;
 	background:#ffffff;
 	margin: 0;
 }
@@ -18,14 +13,14 @@
 	font-size:14px;
 }
 
-:host/deep/ h3,:host/deep/ h1,:host/deep/ h4  {
-	font-family: 'Lobster', cursive;
+:host/deep/ h1,:host/deep/ h3,:host/deep/ h4  {
+	font-family: Arial, Helvetica, sans-serif;
 	margin:10px 0;
 }
 
-/deep/.special-font > li > a {
-    font-family: 'Pattaya', sans-serif;
-    font-size: x-large;
+:host /deep/.special-font > li > a {
+	font-family: 'Pattaya', sans-serif;
+	/* font-family: Arial, Helvetica, sans-serif; */
 }   
 
 :host /deep/ ul,label{
@@ -40,11 +35,12 @@
 /* slider */
 app-slider {
 	position: absolute;
-	bottom: 120px;
+	bottom: 15vh;
 	left: 0; 
 	right: 0; 
 	margin-left: auto; 
 	margin-right: auto; 
+	z-index: 1;
 }
 
 /*-- banner --*/
@@ -55,7 +51,8 @@ app-slider {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	height:700px;
+	max-height: 50vh;
+	width: 100%;
 	position: relative;
 }
 
@@ -73,13 +70,15 @@ app-slider {
 	width:100%;
 	position: absolute;
 	top:0;
+	z-index:1;
 }
 
 .save-changes {
 	display: none;
 	position: absolute;
     bottom: 60px;
-    right: 50px;
+	right: 50px;
+	z-index: 2;
 }
 
 
@@ -102,7 +101,8 @@ app-slider {
 .update-banner {
 	position: absolute;
 	bottom: 60px;
-    left: 50px;
+	left: 50px;
+	z-index: 2;
 }
 
 

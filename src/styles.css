@@ -2,17 +2,77 @@
 files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.loader {
-    position: relative;
+body {
+  /* background-color: red; */
+  height: 100%;
 }
 
-.loader img {
-    position: fixed;
-    z-index: 999;
-    overflow: show;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+.pokeball {
+  width: 150px;
+  height: 150px;
+  animation: rotate 1.5s linear infinite;
+  left: calc(50% - 75px);
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 75px);
+}
+.pokeball .inner {
+  width: 150px;
+  height: 75px;
+  border: 48.33333px solid red;
+  box-sizing: border-box;
+  transition: opacity .8s ease-in-out;
+  /* z-index: -1; */
+  /* opacity: 0; */
+}
+
+/* my-app:empty + .pokeball {
+    opacity: 1;
+    z-index: 100;
+} */
+
+.pokeball .upper, .pokeball .lower {
+  width: 100%;
+  position: absolute;
+  height: calc(50% - 5px);
+  overflow: hidden;
+}
+.pokeball .upper {
+  top: 0;
+}
+.pokeball .upper .inner {
+  border-radius: 123.33333px 123.33333px 0 0;
+  border-bottom: 0;
+  margin-bottom: -5px;
+}
+.pokeball .lower {
+  bottom: 0;
+}
+.pokeball .lower .inner {
+  margin-top: -5px;
+  border-radius: 0 0 123.33333px 123.33333px;
+  border-top: 0;
+}
+.pokeball .middle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  position: absolute;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* FROALA POP UP */
+
+
+.fr-popup.fr-active {
+  z-index: 1030!important;
 }

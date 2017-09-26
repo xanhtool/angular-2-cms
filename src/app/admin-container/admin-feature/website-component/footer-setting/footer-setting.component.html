@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <h3>Avatar</h3>
-                    <app-upload-button [parentForm]="footerForm" [imageControlValue]="footerForm.get('image').value" [controlPlace]="['image']"></app-upload-button>
+                    <app-upload-button (onDone)="updatePhoto($event)" [source]="'footer'" [imageLastValue]="footerForm.get('image').value" [imageName]="'author-avatar'"></app-upload-button>
                 </div>
                 <div class="col-lg-8 col-lg-offset-1">
                     <div class="custom-theme" [froalaEditor]='froalaOptions'   formControlName="aboutAuthor">Nội dung về tác giả!</div>

@@ -17,7 +17,7 @@ export class SlugPipe implements PipeTransform {
     slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
     slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
     slug = slug.replace(/đ/gi, 'd');
-    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+    slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\[|\]|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
     slug = slug.replace(/ /gi, "-");
     slug = slug.replace(/\-\-\-\-\-/gi, '-');
     slug = slug.replace(/\-\-\-\-/gi, '-');

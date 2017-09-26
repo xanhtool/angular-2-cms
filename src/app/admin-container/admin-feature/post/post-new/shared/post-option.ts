@@ -31,7 +31,7 @@ export class PostOption {
       this.category = option.category || '';
       this.tags = option.tags || {0:''};
       this.categoryFeature = option.categoryFeature || null;
-      this.author =  option.author || '';
+      if(option.author) this.author =  option.author || '';
       this.seo = option.seo || new SeoOption();
     }
     

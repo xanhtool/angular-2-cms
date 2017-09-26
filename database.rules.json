@@ -6,7 +6,16 @@
       }
     },
     "posts": {
-      ".indexOn":["isPublished","isPinned","isHome","postOption/category","feature"],
+      ".indexOn":["postOption/slug","postOption/category","postMark/isPublished","postMark/isFeatured","postMark/isHome","postMark/publishType","postMark/featureType","postInformation/view"],
+      "$slug": {
+        "postInformation":{
+          ".write":true
+        },
+        ".write":"newData.child('authorUid').val() == auth.uid || data.child('authorUid').val() == auth.uid"
+      }
+    },
+    "draft-posts": {
+      ".indexOn":["postOption/slug"],
       "$slug": {
         ".write":"newData.child('authorUid').val() == auth.uid || data.child('authorUid').val() == auth.uid"
       }
@@ -40,6 +49,10 @@
     },
     "features": {
       ".write":"auth.uid != null"
+    },
+    "subscribers":{
+      ".read": true,
+      ".write": true
     },
    	".read": true
   }

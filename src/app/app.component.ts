@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import { Component, OnInit } from '@angular/core';
-
+import { Angulartics2GoogleTagManager } from 'angulartics2';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -22,7 +22,8 @@ export class AppComponent {
     private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute, 
-    public db: AngularFireDatabase
+    public db: AngularFireDatabase,
+    angulartics2GoogleTagManager: Angulartics2GoogleTagManager
   ) { 
       this.getGlobalSetting();
    }

@@ -1,3 +1,4 @@
+import { BlogAuthService } from './../services/blog-auth.service';
 import { BlogComponentService } from './../../shared/services/blog-component.service';
 import { BlogFileService } from './../../shared/services/blog-file.service';
 import { Router, NavigationEnd  } from '@angular/router';
@@ -24,7 +25,9 @@ export class BlogTemplateComponent implements OnInit {
     private blogFileService: BlogFileService,
     private blogComponentService: BlogComponentService, 
     private renderer2: Renderer2,
-    public sanitizer: DomSanitizer) {
+    public sanitizer: DomSanitizer,
+    public blogAuthService: BlogAuthService
+  ) {
      route.events
      .filter(route=> route instanceof NavigationEnd )
      .map((e: NavigationEnd) => e.url)

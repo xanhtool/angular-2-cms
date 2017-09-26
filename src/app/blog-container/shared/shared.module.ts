@@ -1,3 +1,6 @@
+import { BlogSnackbarService } from './services/blog-snackbar.service';
+import { SparkpostAPIInterceptor } from './services/email.interceptor';
+import { BlogEmailService } from './services/blog-email.service';
 import { BlogFileService } from './services/blog-file.service';
 import { FroalaViewModule } from 'angular-froala-wysiwyg';
 import { BlogComponentService } from './services/blog-component.service';
@@ -12,16 +15,24 @@ import { FormsModule } from "@angular/forms";
 import { PostHomeFeatureComponent } from './component/post-home-feature/post-home-feature.component';
 import { DraggableDirective } from './directives/draggable.directive';
 import { InfiniteScrollerDirective } from './directives/infinite-scroller.directive';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedRoutingModule,
     FormsModule,
-    FroalaViewModule
+    FroalaViewModule,
+    HttpClientModule
   ],
   declarations: [RightSidebarComponent, BreadcrumbComponent,PostItemComponent,PostHomeFeatureComponent, DraggableDirective, InfiniteScrollerDirective],
   exports:[RightSidebarComponent,BreadcrumbComponent,PostItemComponent,PostHomeFeatureComponent,FroalaViewModule,DraggableDirective,InfiniteScrollerDirective],
-  providers: [BlogPostService, BlogComponentService,BlogFileService]
+  providers: [
+    BlogPostService, 
+    BlogComponentService,
+    BlogFileService,
+    BlogEmailService,
+    BlogSnackbarService
+  ]
 })
 export class SharedModule { }

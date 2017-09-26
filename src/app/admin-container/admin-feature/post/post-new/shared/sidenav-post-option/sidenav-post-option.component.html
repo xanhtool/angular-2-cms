@@ -17,7 +17,7 @@
             <md-datepicker #picker></md-datepicker>
 
             <!--UPLOAD IMAGE-->
-            <app-upload-button mdTooltip="Ảnh bìa đại diện cho bài viết" [parentForm]="parentForm" [imageControlValue]="parentForm.get(['postOption','image']).value" [controlPlace]="['postOption','image']"></app-upload-button>
+            <app-upload-button  mdTooltip="Ảnh bìa đại diện cho bài viết" (onDone)="updatePhoto($event)" [imageLastValue]="parentForm.get(['postOption','image']).value" [imageName]="parentForm.get(['postOption','image','name']).value || parentForm.get(['uid']).value" [source]="'posts'"></app-upload-button>
 
 
              <!--AUTHOR-->

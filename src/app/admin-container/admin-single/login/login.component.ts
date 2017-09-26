@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { SnackbarService } from './../../admin-shared/services/snackbar.service';
 import { AuthService } from './../../admin-core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   constructor(
     private authService:AuthService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) {
    }
 
@@ -33,8 +35,8 @@ export class LoginComponent implements OnInit {
         case "The password is invalid or the user does not have a password.": 
           this.snackbarService.openSnackBar("Lỗi mật khẩu không đúng hoặc chưa nhập mật khẩu", "Đóng", 5000)
         case "A network error (such as timeout, interrupted connection or unreachable host) has occurred.":
-          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, vui lòng refesh lại trang", "Đóng", 5000);
-          location.reload();
+          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, đang tự động refesh lại trang", "Đóng", 5000);
+          this.router.navigate(['/login'])
       }
     });
   }
@@ -54,8 +56,8 @@ export class LoginComponent implements OnInit {
         case "The password is invalid or the user does not have a password.": 
           this.snackbarService.openSnackBar("Lỗi mật khẩu không đúng hoặc chưa nhập mật khẩu", "Đóng", 5000)
         case "A network error (such as timeout, interrupted connection or unreachable host) has occurred.":
-          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, vui lòng refesh lại trang", "Đóng", 5000);
-          location.reload();
+          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, đang tự động refesh lại trang", "Đóng", 5000);
+          this.router.navigate(['/login'])
       }
     });
   }
@@ -75,8 +77,8 @@ export class LoginComponent implements OnInit {
         case "The password is invalid or the user does not have a password.": 
           this.snackbarService.openSnackBar("Lỗi mật khẩu không đúng hoặc chưa nhập mật khẩu", "Đóng", 5000)
         case "A network error (such as timeout, interrupted connection or unreachable host) has occurred.":
-          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, vui lòng refesh lại trang", "Đóng", 5000);
-          location.reload();
+          this.snackbarService.openSnackBar("Lỗi không truy cập được mạng, đang tự động refesh lại trang", "Đóng", 5000);
+          this.router.navigate(['/login'])
       }
     });
   }

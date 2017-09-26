@@ -1,7 +1,7 @@
 import { SnackbarService } from './../../../../../admin-shared/services/snackbar.service';
 import { Category } from './../../../../../admin-single/category/shared/category';
 import { PostOption } from './../post-option';
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
@@ -41,7 +41,7 @@ import { SlugPipe } from "../../../../../admin-shared/pipes/slug.pipe";
 ]
 })
 
-export class SidenavPostOptionComponent implements OnInit {
+export class SidenavPostOptionComponent implements OnInit,OnChanges {
 
   @Input() parentForm:FormGroup;
 
@@ -71,27 +71,11 @@ export class SidenavPostOptionComponent implements OnInit {
       this.copyControlValue(['postOption','tags'],['postOption','seo','keywords']);
       this.copyControlValue(['postOption','author'],['postOption','seo','author']);
     }
-  
   }
 
- 
-
- 
-
-  // watchCategory() {
-  //   this.parentForm.get(['postOption','category']).valueChanges
-  //   .subscribe(value => {
-  //     if (value) {
-  //       this.isDisableToogle = false;
-  //       if (this.categoryFeatureToogle) this.parentForm.get(['postOption','categoryFeature']).setValue(value);
-  //     }
-  //     else {
-  //       this.isDisableToogle = true;
-  //       this.parentForm.get(['postOption','categoryFeature']).setValue(null)
-  //     };
-
-  //   })
-  // }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('changes',changes)
+  }
 
   // watchFeatureToogle() {
   //   this.parentForm.get(['postOption','categoryFeature']).valueChanges
@@ -133,6 +117,10 @@ export class SidenavPostOptionComponent implements OnInit {
        toControl.setValue(value.toString());
        
     })
+  }
+
+  updatePhoto(event) {
+    this.parentForm.get(['postOption','image']).setValue(event);
   }
 
 }

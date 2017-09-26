@@ -1,0 +1,49 @@
+[debug] [2017-09-21T10:13:39.988Z] ----------------------------------------------------------------------
+[debug] [2017-09-21T10:13:39.993Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hiepx\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-09-21T10:13:39.995Z] CLI Version:   3.10.0
+[debug] [2017-09-21T10:13:39.995Z] Platform:      win32
+[debug] [2017-09-21T10:13:39.996Z] Node Version:  v7.7.1
+[debug] [2017-09-21T10:13:39.998Z] Time:          Thu Sep 21 2017 17:13:39 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:39.998Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-09-21T10:13:40.063Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-09-21T10:13:40.065Z] > authorizing via signed-in user
+[debug] [2017-09-21T10:13:40.075Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/quickstart-9ddcf  
+ Thu Sep 21 2017 17:13:40 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:41.389Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-21T10:13:41.393Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/quickstart-9ddcf/tokens  
+ Thu Sep 21 2017 17:13:41 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:42.401Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'quickstart-9ddcf'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] +  database: rules ready to deploy.
+[debug] [2017-09-21T10:13:46.272Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "firebase-admin": "^5.2.1",
+    "firebase-functions": "^0.6.3",
+    "sparkpost": "^2.1.2"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-09-21T10:13:46.282Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/quickstart-9ddcf?view=CONSUMER_VIEW  
+ Thu Sep 21 2017 17:13:46 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:46.282Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/quickstart-9ddcf?view=CONSUMER_VIEW  
+ Thu Sep 21 2017 17:13:46 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:47.798Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-09-21T10:13:47.881Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-09-21T10:13:47.881Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/quickstart-9ddcf  
+ Thu Sep 21 2017 17:13:47 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:47.881Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/quickstart-9ddcf/apiKeys  
+ Thu Sep 21 2017 17:13:47 GMT+0700 (SE Asia Standard Time)
+[debug] [2017-09-21T10:13:49.220Z] <<< HTTP RESPONSE 200
+[debug] [2017-09-21T10:13:49.252Z] <<< HTTP RESPONSE 200

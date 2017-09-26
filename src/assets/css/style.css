@@ -14,51 +14,42 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 	-ms-transition: .5s ease-in;
 }
 
-.banner1{
-	background:url(../images/banner.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
-	min-height:300px;
+.banner{
+	min-height:104vh
 }
 /*-- nav --*/
 .navbar-default {
     background: rgba(0,0,0,0.7);
     border: none;
 }
-.navbar {
-    margin-bottom: 0;
-}
+
 .navbar-brand {
     height: 84px;
-    padding: 20px 0 0;
+      padding: 0;  
     font-size: 1.2em;
     line-height: 45px;
 }
 .navbar-brand span {
     display: block;
     font-size: .3em;
-    line-height: 0.5;
+    line-height: 1;
     color:#FFDF00;
     text-transform: capitalize;
     letter-spacing: 1px;
 }
 .navbar-default .navbar-brand,.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-    color:#FFFFFF;
-	margin-right:15rem;
-	margin-left: 4rem;
+	color:#FFFFFF;
+	margin: 0 20px 0 60px;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #fff;
     background: none;
 }
-.navbar-nav > li > a {
-    padding:40px 0 0 40px;
-}
+
 .navbar-default .navbar-nav > li > a {
-    color:#C4C4C4;
+	color:#C4C4C4;
+	padding:40px 0 0 40px;
+	font-size: x-large;
 }
 .navbar-collapse {
     padding: 0;
@@ -67,16 +58,10 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border: none;
-    margin-left: 25rem;
+	float: right!important;
+    margin-right: 10%;
 }
-.navbar-right {
-    float: left !important;
-    margin-right: 0;
-    margin-left: 0em;
-}
-.navbar-nav {
-    float: none;;;
-}
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
     color: #fff;
 }
@@ -105,7 +90,8 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 	max-width: 100%;
 }
 .w3l_banner_info{
-	width: 70%;
+	width: 100%;
+	text-align: center;
 }
 .w3l_banner_info h3{
 	font-size:1em;
@@ -127,7 +113,7 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
     padding: .4em .5em;
 	background:transparent;
 	color:#fff;
-    width: 22%;
+    width: 100%;
 }
 /*-- //banner --*/
 /*-- work --*/
@@ -755,7 +741,7 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 /*-- //newsletter --*/
 /*-- footer --*/
 .footer{
-	padding:5em 0 0;
+	/* padding:5em 0 0; */
 }
 .w3agile_footer_grid_left{
 	text-align:center;
@@ -799,7 +785,7 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
 	background: #323232;
     font-style: normal;
     padding: 3em 0;
-    margin: 3em 0 0;
+    /* margin: 3em 0 0; */
 }
 .agileinfo_footer_bottom_grid h3{
 	color: #fff;
@@ -850,7 +836,6 @@ input[type="submit"],input[type="reset"],.w3layouts_mail_grid_left2 a,.w3agile_s
     padding: 3px 7px;
     background:#636363;
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
 	transition:.5s ease-in;
 	-webkit-transition:.5s ease-in;
 	-moz-transition:.5s ease-in;
@@ -1223,6 +1208,9 @@ ul.tag2:last-child {
 	padding:1.5em 0;
 	background:#EFEFEF;
 }
+
+
+
 .service-breadcrumb h2{
 	text-align:center;
 	font-size:2em;
@@ -1748,7 +1736,13 @@ h2.typoh2{
     color: #fff;
 }
 .w3agile_blog_left_grid_r h3{
-	font-size:1.5em;
+	display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: flex-start;
+    flex-wrap: wrap-reverse;
+	font-size:3em;
+	font-weight: bolder;
 	color:#212121;
 	text-transform: capitalize;
 	border-bottom:1px solid #DBDBDB;
@@ -1768,7 +1762,10 @@ h2.typoh2{
 } */
 
 .w3agile_blog_left_grid_r h3 span{
-	display: inline-block;
+	order:-1;
+	display: inline-flex;
+	align-items: center;
+    margin-bottom: 0.8em;
     padding: .3em .5em;
     background: #FFDF00;
     color: #212121;
@@ -1816,7 +1813,8 @@ h2.typoh2{
 
 .agileits_more1 a{
 	color: #212121 !important;
-    margin: 0 !important;
+	margin: 0 !important;
+	padding-bottom: 10px;
 }
 
 /*.w3agile_blog_left_grid{
@@ -1911,13 +1909,18 @@ ul.pagination.w3_pagination {
     display: none;
 }
 .panel-heading {
-    padding:10px 35px;
+    padding-left: 30px;
 }
 .panel-title {
     font-size: 1em;
     color:#fff;
     text-transform: capitalize;
 	text-decoration: none;
+}
+
+.panel-title a {
+	line-height: 1.5em;
+	display: flex;
 }
 .panel-default {
     border-color: #FFF;
@@ -2233,16 +2236,25 @@ a.pa_italic:focus {
 /*-- //mail --*/
 /*-----start-responsive-design------*/
 @media (max-width:1680px){
+	.banner {
+		min-height: 93vh;
+	}
 	.w3ls_choose_us_right {
 		min-height: 345px;
 	}
 }
 @media (max-width:1600px){
+	.banner {
+		min-height: 84vh;
+	}
 	.w3ls_choose_us_right {
 		min-height: 329px;
 	}
 }
 @media (max-width:1440px){
+	.banner {
+		min-height: 79vh;
+	}
 	.w3ls_choose_us_right {
 		min-height: 290px;
 		padding: 2em;
@@ -2250,7 +2262,7 @@ a.pa_italic:focus {
 }
 @media (max-width:1366px){
 	.banner {
-		min-height: 610px;
+		min-height: 100vh;
 	}
 	.work-bottom {
 		min-height: 430px;
@@ -2264,6 +2276,9 @@ a.pa_italic:focus {
 	}
 }
 @media (max-width:1280px){
+	.banner {
+		min-height: 68vh;
+	}
 	.work-bottom h2 {
 		font-size: 2.2em;
 	}
@@ -2274,12 +2289,21 @@ a.pa_italic:focus {
 	.w3ls_choose_us_right h3 {
 		font-size: 1.3em;
 	}
+
+	.w3agile_blog_left h3{
+		font-size: 1.3em;
+	}
+
 	.w3ls_choose_us_right {
 		min-height: 262px;
 		padding: 1.5em 2em;
 	}
 }
 @media (max-width:1080px){
+	.navbar-nav > li > a {
+		font-size: large;
+	}
+
 	.link-effect-3 a {
 		margin: 0 3px;
 	}
@@ -2290,13 +2314,13 @@ a.pa_italic:focus {
 		width: 25%;
 	}
 	.w3l_banner_info h3 span {
-		font-size: 1.7em;
+		font-size: large;
 	}
 	.w3l_banner_info {
 		margin: 12em auto 0;
 	}
 	.banner {
-		min-height: 490px;
+		min-height: 41vh;
 	}
 	.agile_work_grid1:after {
 		width: 95.5%;
@@ -2370,9 +2394,7 @@ a.pa_italic:focus {
 	.agileinfo_team_grids:nth-child(4) {
 		margin: 4em 0 0;
 	}
-	.banner1 {
-		min-height: 200px;
-	}
+
 	.demo > li img {
 		width: 290px;
 	}
@@ -2421,8 +2443,13 @@ a.pa_italic:focus {
 		min-height: 262px;
 		padding: 1em 2em;
 	}
+
+	app-slider {
+		bottom: 8vh;
+	}
 }
 @media (max-width:991px){
+	
 	.navbar-brand {
 		height: 70px;
 		font-size: 1em;
@@ -2433,7 +2460,7 @@ a.pa_italic:focus {
 	}
 	.navbar-nav > li > a {
 		padding: 40px 0 0 19px;
-		font-size: 13px;
+		font-size: 16px;
 	}
 	.link-effect-3 a::before {
 		width: 18%;
@@ -2655,10 +2682,10 @@ a.pa_italic:focus {
 }
 @media (max-width:800px){
 	.banner {
-		min-height: 435px;
+		min-height: 48vh;
 	}
 	.w3l_banner_info h3 span {
-		font-size: 1.5em;
+		font-size: 1.3em;
 	}
 	.w3l_banner_info {
 		width: 68%;
@@ -2684,6 +2711,55 @@ a.pa_italic:focus {
 	.work, .services, .latest-updates, .about, .team, .gallery, .typo, .blog, .mail, .mail-bottom {
 		padding: 3em 0;
 	}
+
+	.navbar {
+		background: transparent;
+	}
+	
+
+	.navbar .navbar-header {
+		display: inline-block;
+		margin: 10px 0 0 10px;
+	}
+
+	.navbar.navbar-default h1 {
+		float: right;
+		margin: 5px 10px 0 0
+	}
+
+	.navbar .navbar-header .navbar-toggle {
+		margin: 0;
+	}
+
+	.navbar .navbar-brand {
+		margin: 0;
+		height: 45px;
+	}
+
+	.navbar .dashboard {
+		display: none;
+	}
+
+	/* #BANNER */
+
+	.banner {
+		min-height: 37vh;
+	}
+
+	.dropdown.update-banner {
+		display: none;
+	}
+	
+	/* SLIDER */
+
+	app-slider {
+		bottom: 3vh;
+	}
+
+	.carousel-indicators {
+		display: none;
+	}
+
 	.work-bottom {
 		padding: 4em 0 2em;
 	}
@@ -2701,6 +2777,11 @@ a.pa_italic:focus {
 	}
 }
 @media (max-width:767px){
+
+	.dropdown-menu {
+		display:none!important
+	}
+
 	.navbar-default .navbar-toggle {
 		border-color: #fff;
 	}
@@ -2714,6 +2795,7 @@ a.pa_italic:focus {
 		background-color: transparent;
 	}
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		margin-top: 100px;
 		border: none;
 		position: absolute;
 		width: 100%;
@@ -2729,7 +2811,7 @@ a.pa_italic:focus {
 	.navbar-nav > li > a {
 		padding: 20px 0 0;
 		text-align: center;
-		font-size: 13px;
+		font-size: 14px;
 	}
 	.link-effect-3 a::before {
 		width: 10%;
@@ -2786,7 +2868,7 @@ a.pa_italic:focus {
 }
 @media (max-width: 640px){
 	.w3l_banner_info h3 span {
-		font-size: 1.4em;
+		font-size: 1.2em;
 	}
 	.w3ls_head {
 		font-size: 1.5em;
@@ -2935,10 +3017,10 @@ a.pa_italic:focus {
 		width: 81%;
 	}
 	.w3l_banner_info h3 span {
-		font-size: 1.3em;
+		font-size: 1.1em;
 	}
 	.banner {
-		min-height: 380px;
+		min-height: 32vh;
 	}
 	.work-bottom h2 {
 		font-size: 1.4em;
@@ -2958,6 +3040,13 @@ a.pa_italic:focus {
 	}
 }
 @media (max-width: 480px){
+
+
+	.navbar h1 .dashboard {
+		margin:0;
+		width: 60px;
+	}
+
 	.w3l_banner_info h3 i {
 		width: 40%;
 	}
@@ -2966,10 +3055,7 @@ a.pa_italic:focus {
 		margin: 8em auto 0;
 	}
 	.w3l_banner_info h3 span {
-		font-size: 1.2em;
-	}
-	.banner {
-		min-height: 350px;
+		font-size: 1em;
 	}
 	.link-effect-3 a::before {
 		left: 30%;
@@ -2984,7 +3070,7 @@ a.pa_italic:focus {
 		font-size: .9em;
 	}
 	.navbar-toggle {
-		margin: 1.8em 0 0;
+		margin: 1.8em 0 1em 1em;;
 	}
 	.agile_work_grid h4 {
 		font-size: 1em;
@@ -3091,8 +3177,8 @@ a.pa_italic:focus {
 	.w3ls_choose_us_right p {
 		margin: 1em 0 1em;
 	}
-	.banner1 {
-		min-height: 130px;
+	.banner {
+		min-height: 30vh;
 	}
 	.wthree_about_grids {
 		margin: 3em 0 0;
@@ -3119,9 +3205,21 @@ a.pa_italic:focus {
 		margin: 4em 0 0;
 	}
 	.w3agile_blog_left_grid_l {
-		float: none;
 		margin: 0 auto;
+		width: 60px;
+		height: 60px;
+		margin-right: 10px;
+		font-size: 13px;
 	}
+
+	.w3agile_blog_left_grid_l h4 {
+		font-size: 13px;
+	}
+
+	.w3agile_blog_left_grid_l p {
+		font-size: 10px!important;
+	}
+
 	.w3agile_blog_left_grid_r {
 		float: none;
 		width: 100%;
@@ -3200,10 +3298,10 @@ a.pa_italic:focus {
 		font-size: 14px;
 	}
 	.w3l_banner_info h3 span {
-		font-size: 1.01em;
+		font-size: 0.9em;
 	}
 	.banner {
-		min-height: 325px;
+		min-height: 31vh;
 	}
 	.w3l_banner_info {
 		margin: 7em auto 0;
@@ -3282,7 +3380,7 @@ a.pa_italic:focus {
 		width: 93%;
 	}
 	.w3l_banner_info h3 span {
-		font-size:1.04em;
+		font-size:0.8em;
 	}
 	.w3l_banner_info h3 {
 		font-size: 13px;
@@ -3408,7 +3506,7 @@ a.pa_italic:focus {
 		margin: 1.5em 0 0;
 	}
 	.banner {
-		min-height: 300px;
+		min-height: 19vh;
 	}
 	.wthree_para {
 		font-size: 12px;

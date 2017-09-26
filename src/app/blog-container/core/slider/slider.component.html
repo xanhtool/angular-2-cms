@@ -10,7 +10,10 @@
 
 
        <div class="item wthree_banner_info_grid" [class.active]="i == 0" *ngFor="let quote of quotes; let i = index">
-       	<h3><i>{{quote.author}}</i><span>"{{quote.content}}"</span></h3>
+       	<h3>
+           <span>"{{quote.content}}"</span>
+           <i>{{quote.author}}</i>
+        </h3>
       </div> 
 
       <!-- <div class="item active wthree_banner_info_grid" >

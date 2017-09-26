@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { AdminEmailService } from './services/admin-email.service';
 import { AdminFileService } from './services/admin-file.service';
 import { DragDropService } from './services/drag-drop.service';
 import { AdminComponentService } from './services/admin-component.service';
@@ -33,9 +35,11 @@ import { ContenteditableModelDirective } from './directives/contenteditable-mode
 import { SlugPipe } from './pipes/slug.pipe';
 import { MakeDraggableDirective } from './directives/make-draggable.directive';
 import { MakeDroppableDirective } from './directives/make-droppable.directive';
+import { AdminLoaderComponent } from './components/admin-loader/admin-loader.component';
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     AdminSharedRoutingModule,
     MdInputModule,
@@ -89,7 +93,8 @@ import { MakeDroppableDirective } from './directives/make-droppable.directive';
     MakeDraggableDirective,
     MakeDroppableDirective,
     SlugPipe,
-    MdRadioModule
+    MdRadioModule,
+    AdminLoaderComponent
 
   ],
   declarations: [
@@ -97,7 +102,7 @@ import { MakeDroppableDirective } from './directives/make-droppable.directive';
     UploadButtonComponent,
     SlugPipe, 
     MakeDraggableDirective, 
-    MakeDroppableDirective
+    MakeDroppableDirective, AdminLoaderComponent
   ],
   providers: [
     AdminComponentService,
@@ -105,7 +110,8 @@ import { MakeDroppableDirective } from './directives/make-droppable.directive';
     SnackbarService,
     AdminPostService,
     DragDropService,
-    AdminFileService
+    AdminFileService,
+    AdminEmailService
   ],
   entryComponents:[]
 })

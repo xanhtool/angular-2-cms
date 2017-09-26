@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
+  lastestKey:any;
   category: string;
-  categoryPost:any;
+  posts:any[]=[];
   currentPage: number = 1;
 
   constructor(
@@ -28,12 +29,20 @@ export class PostListComponent implements OnInit {
      .map(url => url.split('/')[1])
      .subscribe(category=> {
        this.category = category;
-       this.getCategoryPost(this.currentPage);
+       this.getCategoryPosts();
      })
   }
 
-  getCategoryPost(page) {
-    this.categoryPost = this.blogPostService.getCategoryPost(this.category,page).map((posts:any[]) => posts.reverse());
+  getCategoryPosts() {
+    this.blogPostService.getPageCategoryPosts(this.category,this.lastestKey).filter(posts => posts.length != 1)
+    .subscribe((posts:any[]) => {
+      if(posts && posts[posts.length-1]) this.lastestKey = posts[posts.length-1].uid;
+      if (this.posts.length == 0) this.posts = [...posts]
+      else {
+        posts.shift();
+        this.posts = this.posts.concat(posts);
+      }
+    })
   }
 
   ngOnInit() {
@@ -41,8 +50,7 @@ export class PostListComponent implements OnInit {
 
 
   fetch(e) {
-    console.log("fetching data page",this.currentPage++)
-    this.getCategoryPost(this.currentPage++);
+    this.getCategoryPosts();
   }
 
 }

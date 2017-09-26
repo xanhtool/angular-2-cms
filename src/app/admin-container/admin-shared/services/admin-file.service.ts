@@ -13,22 +13,28 @@ export class AdminFileService {
     
     }
 
-  deleteImage(imageName,source?) {
-    let path = 'images'+'/'+imageName
-    if (source) path = 'images'+source+imageName
-    let imageRef = this.storageRef.child(path);
+  deleteImage(path) {
+    let imageRef = this.storageRef.child('images/'+path);
     return imageRef.delete()
   }
 
-  uploadImage(image,source?) {
-    let path = 'images'+'/'+image.name
-    if (source) path = 'images'+source+image.name
+  uploadImage(file,source,name="image") {
+    let typeExtension = file.name.split('.')[file.name.split('.').length -1]
+    let path = 'images/'+source+'/'+name+'.'+typeExtension
+    let metadata = {
+      contentType: file.type,
+      name: name
+    };
     let imageRef = this.storageRef.child(path);
-    let uploadTask = imageRef.put(image);
+    let uploadTask = imageRef.put(file,metadata);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,(snapshot) => {
         this.loadPercent.next((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
     });
     return uploadTask;
+  }
+
+  updateMeta(metaData) {
+    
   }
 
 }

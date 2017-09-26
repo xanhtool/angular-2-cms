@@ -1,11 +1,12 @@
 <!--Blog-->
 <div class="blog">
 		<div class="container">
-			<main appInfiniteScroller (fetch)="fetch($event)"  class="col-md-7 w3agile_blog_left" *ngIf="postList | async; let posts ;else loading">
+			<main appInfiniteScroller class="col-md-8 w3agile_blog_left" >
 				<app-post-home-feature></app-post-home-feature>
 				<!-- =============================================== -->
 				<h3>Bài viết mới nhất</h3>
 				<app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+				<button class="more-post" (click)="fetch()">Thêm bài viết</button>
 			</main>
 			<app-right-sidebar></app-right-sidebar>
 			<div class="clearfix"> </div>
@@ -13,15 +14,17 @@
 	</div>
 <!--//Blog-->
 
-<ng-template #loading>Loading...</ng-template>
+<ng-template #loading>
+	Đang lấy bài viết...
+</ng-template>
 
 <!-- newsletter -->
 	<div class="agileits_w3layouts newsletter">
 		<div class="container">
 			<p class="wthree_para wthree_para1">Newsletter</p>
 			<h3 class="w3ls_head w3ls_head1">Subscribe to us</h3>
-			<form action="#" method="post">
-				<input class="email" type="email" name="Email" placeholder="Email" required="">
+			<form (submit)="subscribe($event,subscriberEmail.value)">
+				<input class="email" type="email" name="Email" placeholder="Email" #subscriberEmail required>
 				<input type="submit" value="Submit">
 			</form>
 		</div>

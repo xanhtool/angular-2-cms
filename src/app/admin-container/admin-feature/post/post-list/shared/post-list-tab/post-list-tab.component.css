@@ -50,5 +50,9 @@
 }
 
 .display {
-  display: block;
+  display: block!important;
+}
+
+.delete-button{
+  display:none;
 }

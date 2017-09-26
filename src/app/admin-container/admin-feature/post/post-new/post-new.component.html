@@ -20,7 +20,7 @@
           </div>
           <ul  [class.showFlower]="show">
             <li><button mdTooltip="Xuất bản" md-mini-fab (click)="publish(postForm.getRawValue(),true)"><i class="fa fa-share-square-o fa-lg" aria-hidden="true"></i></button></li>
-            <li ><button mdTooltip="Lưu nháp" md-mini-fab (click)="saveDraft(postForm.getRawValue(),false)"><i class="fa fa-save fa-lg" aria-hidden="true"></i></button></li>
+            <li ><button mdTooltip="Lưu nháp" md-mini-fab (click)="publish(postForm.getRawValue(),false)"><i class="fa fa-save fa-lg" aria-hidden="true"></i></button></li>
             <li><button mdTooltip="Thêm thông tin" md-mini-fab (click)="sidenavright.toggle()"><i class="fa fa-cog fa-lg" aria-hidden="true"></i></button></li>
           </ul>
         </div>
@@ -72,10 +72,10 @@
 
 </div>
 
-
-<!-- <p>Form value: {{ postForm.value | json }}</p> -->
-<!-- <p>Form status: {{ postForm.status | json }}</p> 
-<p>Form author Uid: {{ postForm.value['authorUid'] | json }}</p> 
+ <!-- <p>post ID value: {{ postForm.value.uid | json }}</p>  -->
+ <!-- <p>Form value: {{ postForm.value | json }}</p> 
+  <p>Form status: {{ postForm.status | json }}</p>   -->
+<!--  <p>Form author Uid: {{ postForm.value['authorUid'] | json }}</p> 
 <p>Form is published: {{ postForm.value['postMark']['isPublished'] | json }}</p>  -->
 
 

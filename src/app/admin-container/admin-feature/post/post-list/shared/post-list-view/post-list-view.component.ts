@@ -53,7 +53,10 @@ export class PostListViewComponent implements OnInit {
 
     let firstPostOfTabSource = this.eventService.subscribeEvent('tabSort')  // creating source 1 (tab select)
     .map(sortLabel => this.sortList.filter(sort => sort.label == sortLabel)[0]) // find sort that have label the same sort label
-    .mergeMap((sort:any) => this.adminPostService.getPostCustom(sort.queryByChild,sort.equalTo,1)) // change stream to get Post
+    .mergeMap((sort:any) => {
+      if (sort.label == 'Nháp') return this.adminPostService.getDraftPosts();
+      return this.adminPostService.getCustomPosts(sort.queryByChild,sort.equalTo,1)
+    }) // change stream to get Post
     .map(postList => {
       if (postList.length == 0) return Observable.of(null); // if click to sort that doesn't have post, we set post to null
       return postList; // if have post, just return
@@ -62,40 +65,19 @@ export class PostListViewComponent implements OnInit {
 
     let userSelectPostSource = this.eventService.subscribeEvent('userSelectedPost') // creating source 2 (user click)
     .mergeMap(slug => this.adminPostService.getPost(slug)) // change stream to getPost stream
-    .filter(post => post.$key != "null") // filter, not allow post doesn't have value
+    .filter(post => {
+      if (post) return true;
+    }) // filter, not allow post doesn't have value
     
-    this.post = Observable.merge(firstPostOfTabSource,userSelectPostSource) // using post data trigger by tab or user click
+    this.post = Observable.merge(firstPostOfTabSource,userSelectPostSource)
 
-    // .subscribe(post => {
-    //   this.post = post;
-    //   //  if (tabNumber == 0) {
-    //   //     this.eventService.addEvent('viewPublishPost');
-    //   //     this.post = this.eventService.subscribeEvent('viewPublishPost'); 
-    //   //     this.viewMode = 'viewPublishPost';
-    //   //   } else if (tabNumber == 1) {
-    //   //     this.eventService.addEvent('viewDraftPost');
-    //   //     this.post = this.eventService.subscribeEvent('viewDraftPost');
-    //   //     this.viewMode = 'viewDraftPost'; 
-    //   //   }
-    //   //   else if(tabNumber == 2) {
-    //   //     this.eventService.addEvent('viewPinPost');
-    //   //     this.post = this.eventService.subscribeEvent('viewPinPost');
-    //   //     this.viewMode = 'viewPinPost'; 
-    //   //   }
-    //   //   else if(tabNumber == 3) {
-    //   //     this.eventService.addEvent('viewHomePost');
-    //   //     this.post = this.eventService.subscribeEvent('viewHomePost');
-    //   //     this.viewMode = 'viewHomePost'; 
-    //   //   }
-    // })
   }
 
-  pinPost(post,value) {
+  markFeature(post,value) {
     this.adminPostService.pinPost(post,value)
   }
 
-  homePost(post,value) {
-    value = !value;
+  markHome(post,value) {
     this.adminPostService.homePost(post,value)
   }
 

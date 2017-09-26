@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit {
   }
 
   getCategoryData(category) {
-    this.blogPostService.getCategoryPost(category.url,5).subscribe(posts => category['lastestPost'] = posts);
-    this.blogPostService.getCategoryFeaturePost(category.url,5).subscribe(posts => category['featurePost'] = posts);
+    this.blogPostService.getCategoryPosts(category.url,5).subscribe(posts => category['lastestPost'] = posts);
+    this.blogPostService.getCategoryFeaturePosts(category.url,5).subscribe(posts => category['featurePost'] = posts);
   }
 
 }

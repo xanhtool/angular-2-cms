@@ -292,6 +292,10 @@ angularfire2@^4.0.0-rc.1:
   version "4.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/angularfire2/-/angularfire2-4.0.0-rc.1.tgz#d73014ac5431c0458ee953214f79953a06528c3f"
 
+angulartics2@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/angulartics2/-/angulartics2-2.4.0.tgz#0caa33eb8488a819077b3c3ffdd824e1c890fe81"
+
 ansi-escapes@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-2.0.0.tgz#5bae52be424878dd9783e8910e3fc2922e83c81b"

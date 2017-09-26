@@ -12,7 +12,8 @@ export class ExampleDataSource extends DataSource<any> {
     equalTo?  
   ) {
     super();
-    this.posts = adminPostService.getPostCustom(orderByChild,
+    if (orderByChild == 'postMark/isPublished'&& equalTo == false) this.posts = adminPostService.getDraftPosts();
+    else this.posts = adminPostService.getCustomPosts(orderByChild,
     equalTo)
   }
 

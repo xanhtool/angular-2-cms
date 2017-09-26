@@ -6,7 +6,7 @@ import { AdminCoreModule } from './admin-core/admin-core.module';
 import { FeatureModule } from './../blog-container/feature/feature.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import 'hammerjs'
 import { AdminContainerRoutingModule } from './admin-container-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 

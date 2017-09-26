@@ -1,84 +1,96 @@
-var functions = require('firebase-functions');
-const admin = require('firebase-admin');
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var functions = require("firebase-functions");
+var admin = require("firebase-admin");
 admin.initializeApp(functions.config().firebase);
-
-const ref = admin.database().ref();
-
-exports.createUserAccount = functions.auth.user().onCreate(event => {
-    const uid = event.data.uid;
-    const email = event.data.email;
-    const displayName = event.data.displayName || email || uid;
-    const photoURL = event.data.photoURL || 'https://apt-port-161714.firebaseapp.com/assets/images/avatar.png';
-    const newUserRef = ref.child(`/users/${uid}`)
+var ref = admin.database().ref();
+exports.createUserAccount = functions.auth.user().onCreate(function (event) {
+    var uid = event.data.uid;
+    var email = event.data.email;
+    var displayName = event.data.displayName || email || uid;
+    var photoURL = event.data.photoURL || null;
+    var newUserRef = ref.child("/users/" + uid);
     return newUserRef.set({
         photoURL: photoURL,
         email: email,
         displayName: displayName,
         uid: uid
-    })
-})
-
-exports.cleanupUserAccount = functions.auth.user().onDelete(event => {
-    const uid = event.data.uid;
-    const userRef = ref.child(`/users/${uid}`)
+    });
+});
+exports.cleanupUserAccount = functions.auth.user().onDelete(function (event) {
+    var uid = event.data.uid;
+    var userRef = ref.child("/users/" + uid);
     return userRef.remove();
-})
-
-exports.changeDisplayname = functions.database.ref('/users/{uid}').onUpdate(event => {
+});
+exports.changeDisplayname = functions.database.ref('/users/{uid}').onUpdate(function (event) {
     var eventSnapshot = event.data;
     var eventAuthor = event.auth.variable;
     var profileDisplaynameSnapshot = eventSnapshot.child('displayName');
     if (profileDisplaynameSnapshot.changed()) {
         var displayName = profileDisplaynameSnapshot.val();
-        console.log('lần thử thứ:',displayName)
-        return admin.database().ref(`posts`)
-        .orderByChild('authorUid').equalTo(eventAuthor.user_id).once('value')
-        .then(posts => {
+        return admin.database().ref("posts")
+            .orderByChild('authorUid').equalTo(eventAuthor.user_id).once('value')
+            .then(function (posts) {
             var postsValue = posts.val();
-            return Object.keys(postsValue).map(key => postsValue[key])
-            .forEach((post) =>{
-                console.log('nội dung bài post là gì',post,typeof(post))
-                console.log('post.postOption',post.postOption)
-                console.log("Tên tác giả cũ và mới",post.postOption.author,displayName)
+            return Object.keys(postsValue).map(function (key) { return postsValue[key]; })
+                .forEach(function (post) {
                 post.postOption.author = displayName;
-                return admin.database().ref('/posts/'+post.postOption.slug+'/postOption').update({ author:displayName})
-            })  
+                return admin.database().ref('/posts/' + post.postOption.slug + '/postOption').update({ author: displayName });
+            });
+        });
+    }
+});
+var express = require("express");
+var cors = require("cors");
+var SparkPost = require("sparkpost");
+var client = new SparkPost('34c85e570d05fc0a1f0e200dc6d4103a6a666354');
+var app = express();
+app.use(cors({ origin: true }));
+app.get('/api/v1/templates', function (req, res) {
+    client.templates.list()
+        .then(function (data) {
+        res.status(200).send({ message: 'success', templates: data.results });
+    })
+        .catch(function (err) {
+        res.status(400).send({ message: 'error', err: err });
+    });
+});
+app.post('/api/v1/campain', function (req, res) {
+    admin.database().ref("subscribers")
+        .once('value', function (snapshot) {
+        var recipients = Object.keys(snapshot.val()).map(function (key) { return snapshot.val()[key]; });
+        var recipientsForm = {
+            id: 'quyenanhkt',
+            name: 'quyenanhkt',
+            recipients: recipients
+        };
+        client.recipientLists.update('quyenanhkt', recipientsForm)
+            .then(function (data) {
+            var transmission = {
+                campaign_id: req.body.campainID,
+                content: { template_id: req.body.templateID },
+                recipients: { list_id: 'quyenanhkt' }
+            };
+            var options = {
+                num_rcpt_errors: 3
+            };
+            client.transmissions.send(transmission, options)
+                .then(function (data) {
+                res.status(200).send({ message: 'Done', data: data.results });
+            })
+                .catch(function (err) {
+                res.status(400).send({ message: 'error', err: err });
+            });
         })
+            .catch(function (err) {
+            res.status(400).send({ message: 'error', err: err });
+        });
+    });
+});
+exports.main = functions.https.onRequest(function (request, response) {
+    if (!request.path) {
+        request.url = "/" + request.url;
     }
-})
-
-exports.generateFeatureType = functions.database.ref('/posts/{postSlug}').onUpdate(event => {
-    var eventSnapshot = event.data;
-    var eventAuthor = event.auth.variable;
-    var featureSnapshot = eventSnapshot.child('postMark/isFeatured');
-    if (featureSnapshot.changed()) {
-        var postValue = eventSnapshot.val();
-        var category = postValue.postOption.category;
-        if (postValue.postMark.isFeatured) return admin.database().ref(`/posts/${postValue.postOption.slug}/postMark`)
-        .update({featureType:category}) 
-        else return admin.database().ref(`/posts/${postValue.postOption.slug}/postMark`)
-        .update({featureType:null})
-    }
-})
-
-exports.generatePublishType = functions.database.ref('/posts/{postSlug}').onUpdate(event => {
-    var eventSnapshot = event.data;
-    var eventAuthor = event.auth.variable;
-    var publishSnapshot = eventSnapshot.child('postMark/isPublished');
-    if (publishSnapshot.changed()) {
-        var postValue = eventSnapshot.val();
-        var category = postValue.postOption.category;
-        if (postValue.postMark.isPublished) return admin.database().ref(`/posts/${postValue.postOption.slug}/postMark`)
-        .update({publishType:category}) 
-        else return admin.database().ref(`/posts/${postValue.postOption.slug}/postMark`)
-        .update({publishType:null})
-    }
-})
+    return app(request, response);
+});
+//# sourceMappingURL=index.js.map

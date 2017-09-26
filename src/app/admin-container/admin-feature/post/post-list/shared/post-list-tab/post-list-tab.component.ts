@@ -21,7 +21,7 @@ export class PostListTabComponent implements OnInit {
       'button',
     ];
   dataSource: ExampleDataSource | null;
-  noData: boolean = false;
+  noData: any;
 
   constructor(
     public adminPostService: AdminPostService,
@@ -36,11 +36,8 @@ export class PostListTabComponent implements OnInit {
     
     
     // checking if there is no post, show 'không có dữ liệu'
-    // this.dataSource.connect()
-    // .subscribe((posts) => {
-    //   if (posts.length == 0) this.noData = true;
-    //   else this.noData = false;
-    // })
+    this.noData = this.dataSource.posts.map(posts => !posts.length)
+
   }
 
   viewPost(post) {

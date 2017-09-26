@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { FaqComponent } from './faq/faq.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminNotfoundComponent } from './admin-notfound/admin-notfound.component';
+import { EmailMarketingComponent } from './email-marketing/email-marketing.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AdminNotfoundComponent } from './admin-notfound/admin-notfound.componen
     LoginComponent, 
     DashboardComponent, 
     SettingWebsiteComponent, 
-    CategoryComponent,FaqComponent, ProfileComponent, AdminNotfoundComponent, 
+    CategoryComponent,FaqComponent, ProfileComponent, AdminNotfoundComponent, EmailMarketingComponent, 
   ],
 
 })

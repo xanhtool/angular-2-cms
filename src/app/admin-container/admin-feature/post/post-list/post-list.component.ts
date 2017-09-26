@@ -48,31 +48,9 @@ export class PostListComponent implements OnInit {
     this.eventService.addEvent('userSelectedPost');
     this.eventService.addEvent('tabSort');
     this.eventService.emitEvent('tabSort',this.sortList[0].label);
-    // this.currentMode = this.listMode.find(modeObject => {
-    //   return modeObject.mode == 0;
-    // });
-    // this.eventService.addEvent(this.currentMode.viewMode);
-    // this.eventService.emitEvent(this.currentMode.viewMode,this.getFirstPost());
-
   }
 
   modeChange(mode) {
     this.eventService.emitEvent('tabSort',mode.tab.textLabel);
-    // this.currentMode = this.listMode.find(modeObject => {
-    //   return modeObject.mode == mode;
-    // });
-    // this.eventService.emitEvent(this.currentMode.viewMode,this.getFirstPost());
-
   }
-
-  // getFirstPost() {
-  //   let dataSource = new ExampleDataSource(this.adminPostService,this.currentMode.queryByChild,this.currentMode.equalTo);
-  //   return dataSource.firstPost().subscribe(firstPost => {
-  //    this.eventService.emitEvent(this.currentMode.viewMode,firstPost)
-  //    return firstPost;
-  //  })
-  // }
-
-
-
 }

@@ -7,11 +7,12 @@ import { SnackbarService } from './../../../admin-shared/services/snackbar.servi
 import { Post } from './shared/post';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { EventService } from './../../../admin-shared/services/event.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SlugPipe } from "../../../admin-shared/pipes/slug.pipe";
 import { MdTextareaAutosize } from "@angular/material";
-
+import * as Jquery from 'jquery'
+declare var $:any;
 
 @Component({
   selector: 'app-post-new',
@@ -26,19 +27,11 @@ import { MdTextareaAutosize } from "@angular/material";
 export class PostNewComponent implements OnInit {
   @ViewChild('title') title:MdTextareaAutosize;
   @ViewChild('subtitle') subtitle:MdTextareaAutosize;
-  postSendValue: any;
   categories: Category[];
   formSended: boolean = false;
   show: boolean = false;
   slug:string;
-  options: Object = { 
-    placeholderText: 'Bạn đang nghĩ gì ?',
-    toolbarButtons: ['fullscreen', 'bold', 'italic', '|', 'fontFamily', 'fontSize', 'paragraphFormat','|', 'color','align',  '|', '-', 'emoticons', 'insertLink', 'insertImage','insertVideo', 'insertFile', 'insertTable','insertHR',  '|','formatOL', 'formatUL', , 'quote','|','-', '|',  'help',],
-    fontFamilySelection: true,
-    fontSizeSelection: true,
-    paragraphFormatSelection: true,
-    language: 'vi'
-  } 
+  options;
 
   slugPipe = new SlugPipe();
     
@@ -58,13 +51,45 @@ export class PostNewComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.setForm();
-    
+    this.addFroalaButton();
   }
 
+  addFroalaButton() {
+    $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
+    $.FroalaEditor.RegisterCommand('imageInfo', {
+      title: 'Info',
+      focus: false,
+      undo: false,
+      refreshAfterCallback: false,
+      callback: function () {
+        var $img: JQuery = this.image.get();
+        $img.after(`<div class="imgcard"></div>`);
+        var $div = $img.next().eq(0);
+        let float = $img.css('float');
+        let width = $img.css('width'); 
+        $div.css({float,width})
+        $div.append($img);
+        $div.append(`<a href="" class="imgcard-button">button</a>`);
+       
+      }
+    });
+
+    this.options= { 
+      placeholderText: 'Bạn đang nghĩ gì ?',
+      toolbarButtons: ['fullscreen', 'bold', 'italic', '|', 'fontFamily', 'fontSize', 'paragraphFormat','|', 'color','align',  '|', '-', 'emoticons', 'insertLink', 'insertImage','insertVideo', 'insertFile', 'insertTable','insertHR',  '|','formatOL', 'formatUL', , 'quote','|','-', '|',  'help','html','insertHTML','imageInfo'],
+      toolbarButtonsXS: ['bold', 'italic' , '|', 'imageInfo'],
+      toolbarButtonsSM: ['bold', 'italic' , '|', 'imageInfo'],
+      toolbarButtonsMD: ['bold', 'italic' , '|', 'imageInfo'],
+      imageEditButtons: ['imageReplace', 'imageAlign', 'imageRemove', '|', 'imageLink', 'linkOpen', 'linkEdit', 'linkRemove', '-', 'imageDisplay', 'imageStyle', 'imageAlt', 'imageSize','|', 'imageInfo'],
+      fontFamilySelection: true,
+      fontSizeSelection: true,
+      paragraphFormatSelection: true,
+      language: 'vi',
+      tabSpaces: 4
+    } 
+  } 
    getCategories() {
-     console.log("bắt đầu lấy category")
     this.adminComponentService.getCategories()
-    .do((c) => console.log('category làm sao ',c))
     .do(categories => {
           let postCategory = this.postForm.get(['postOption','category']).value;
           let CategoryUrls = Object.values(categories).map(category => category.url)
@@ -75,6 +100,7 @@ export class PostNewComponent implements OnInit {
 
   initForm() {
     this.postForm = this.fb.group({
+      uid:'',
       authorUid: '',
       title:['', Validators.required],
       subtitle:['', Validators.required ],
@@ -87,7 +113,8 @@ export class PostNewComponent implements OnInit {
       postOption:  this.fb.group({
         image: this.fb.group({
           url:'',
-          name:''
+          name:'',
+          type:''
         }),
         date: new Date(),
         slug: '',
@@ -103,10 +130,10 @@ export class PostNewComponent implements OnInit {
           author: '',
         })
       }),
-      postInfomation: this.fb.group({
-        love: '',
-        share:'',
-        comment: ''
+      postInformation: this.fb.group({
+        love: 0,
+        share:0,
+        view: 0
       })
     });
   }
@@ -115,19 +142,28 @@ export class PostNewComponent implements OnInit {
     this.authService.user
     .do((user) => this.postForm.get(['postOption','author']).setValue(user.displayName || user.email))
     .do((user)  => this.postForm.get('authorUid').setValue(user.uid))
-    .switchMap(() => this.route.paramMap)
-    .map((params: ParamMap) => this.slug = params.get('slug'))
     .do(() => {
       this.getCategories();
-      this.postSendValue = this.postForm.getRawValue()
     }) // copy empty value to open save confirm
-    .filter(slug => slug != null) // if this is not a new post
-    .switchMap((slug) => this.adminPostService.getPost(slug))
+    .switchMap(() => this.route.paramMap)
+    .map((params: ParamMap) => this.slug = params.get('slug'))
+    .filter(slug => {
+      // slug != null
+      if (slug) return true // if old post, allow
+      else this.postForm.get(['uid']).setValue(this.adminPostService.getNewPostKey()) // if new post set uid.
+    }) 
+    .switchMap((slug) => {
+      if (this.router.url.includes('draft-edit')) return this.adminPostService.getPost(slug,true)
+      return this.adminPostService.getPost(slug)
+    })
+    .filter(post => {
+      if(post) return true // if have post, allow
+      // else this.router.navigate(['admin','404']);
+    })
     .subscribe((post) => {
       let editingPost = new Post(post);
       editingPost.postOption.date = new Date(editingPost.postOption.date);
       this.postForm.patchValue(editingPost);
-      this.postSendValue = this.postForm.getRawValue();
       this.getCategories();
       this.resize();
     });
@@ -149,39 +185,23 @@ export class PostNewComponent implements OnInit {
        this.snackBarService.openSnackBar("Bạn cần điền tất cả các mục có dấu sao *","Đóng",5000);
     } else {// if form rready
         if(!this.slug) { // if not old-post = if new post;
+          // return this.adminPostService.uploadPost(this.slug,postValue,isPublished)
           this.slug = postValue.postOption.slug;
-          this.postSendValue = postValue;
-          return this.adminPostService.uploadPost(this.slug,postValue,isPublished)
+          return this.adminPostService.uploadPost(postValue,isPublished)
           .then(() => this.formSended = true)
-          .then(() =>this.router.navigate(['admin','post-edit',this.slug]))
+          
         } else { // if old post
           this.slug = this.router.url.split('/')[3];
           this.slug = decodeURIComponent(this.slug) // decode URI to normal text, not code.
+          // return this.adminPostService.updatePost(postValue, this.slug,newSlug) 
           let newSlug = postValue.postOption.slug;
-          
-          this.postSendValue = postValue;
-          return this.adminPostService.updatePost(postValue, this.slug,newSlug) 
+          return this.adminPostService.updatePost(postValue,isPublished) 
           .then(() => this.formSended = true)
-          .then(() =>this.router.navigate(['admin','post-edit',newSlug]))
         }
     }
 
   }
 
-  saveDraft(postValue,isPublished) {
-    postValue = this.makeSureSlug(postValue);
-    postValue['postMark']['isPublished'] = isPublished;
-    if (this.postForm.status != "VALID") {
-       this.snackBarService.openSnackBar(`Bạn cần điền đầy đủ "thông tin bắt buộc" trước khi lưu.Thông tin bắt buộc có thể tìm thấy ở "Hoa công cụ".`,"Đóng",5000);
-    } else {
-      if(!this.slug) {
-        this.slug = postValue.postOption.slug;
-      }
-      this.postSendValue = postValue;
-      return this.adminPostService.uploadPost(this.slug,postValue,isPublished)
-      .then(() => this.formSended = true);
-    }
-  }
   
   makeSureSlug(postValue) { 
     postValue.postOption.slug = this.slugPipe.transform(postValue.postOption.slug)
@@ -192,14 +212,6 @@ export class PostNewComponent implements OnInit {
     let published = this.postForm.value['postMark']['isPublished'];
     if (this.postForm.dirty || this.formSended) return true;
     if (published) return this.publish(this.postForm.getRawValue(),true).then(() => true)
-    else return this.saveDraft(this.postForm.getRawValue(),false).then(() => true);
-    // if () this.publish(this.postForm.getRawValue(),true)
-    // else if (this.drafting) this.saveDraft(this.postForm.getRawValue(),false)
-    // else this.saveDraft(this.postForm.getRawValue(),false);
-    // if (this.postForm.status != "VALID" && ) {
-    //    return false;
-    // } else {
-    //   return true;
-    // }
+    else return this.publish(this.postForm.getRawValue(),false).then(() => true);
   }
 }

@@ -8,8 +8,10 @@
     </button>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <span><a href="/admin/dashboard"><img [routerLink]="['/admin/dashboard']" class="dashboard" *ngIf="blogAuthService.user | async as user" src="../../../../assets/images/logo.png" alt="admin"> </a></span>
-  <h1><a class="navbar-brand" routerLink="/" routerLinkActive="active" >QA<span> Marketing Jouney </span></a>
+ 
+  <h1> 
+    <a href="/admin/dashboard"><img [routerLink]="['/admin/dashboard']" class="dashboard" *ngIf="blogAuthService.user | async as user" src="../../../../assets/images/logo.png" alt="admin"> </a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active" ><img src="../../../../assets/images/quyenanhkt-logo.png" alt="Quyền anh KT logo"></a>
   </h1>
  
   <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">

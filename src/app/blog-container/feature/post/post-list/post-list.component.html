@@ -3,8 +3,9 @@
 <!-- blog -->
 	<div class="blog">
 		<div class="container">
-			<main appInfiniteScroller (fetch)="fetch($event)"  class="col-md-7 w3agile_blog_left">
-				<app-post-item *ngFor="let post of categoryPost | async as post" [post]=post></app-post-item>
+			<main appInfiniteScroller class="col-md-8 w3agile_blog_left" *ngIf="posts">
+				<app-post-item *ngFor="let post of posts" [post]=post></app-post-item>
+				<button class="more-post" (click)="fetch()">Thêm bài viết</button>
 			</main>
 			<app-right-sidebar></app-right-sidebar>
 		

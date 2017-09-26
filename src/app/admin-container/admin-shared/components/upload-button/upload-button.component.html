@@ -1,6 +1,6 @@
 <label class="uploader">
     <i class="icon icon-upload fa fa-upload"></i>
-    <img [src]="url" [@imageState]="imageLoaded"/>
+    <img *ngIf="imageValue" [src]="imageValue.url" [alt]="imageValue.name" [@imageState]="imageLoaded"/>
     <input #imageInput
     type="file" 
     name="file" 

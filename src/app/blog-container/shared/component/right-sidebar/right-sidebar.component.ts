@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { BlogPostService } from './../../services/blog-post.service';
 import { BlogComponentService } from './../../services/blog-component.service';
 import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
@@ -10,7 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RightSidebarComponent implements OnInit {
   admin: FirebaseObjectObservable<any>;
-  recentPost: FirebaseListObservable<any[]>;
+  recentPosts:any;
+  mostViewPosts:any;
   categories: FirebaseListObservable<any[]>;
   faq: FirebaseListObservable<any[]>;
   constructor(
@@ -20,18 +22,22 @@ export class RightSidebarComponent implements OnInit {
 
   ngOnInit() {
     this.getAdmin();
-    this.getRecentPost();
+    this.getRecentPosts();
+    this.getMostViewPost();
     this.getCategories();
     this.getFaq();
   }
-
 
   getAdmin() {
     this.admin = this.blogComponentService.getFooter();
   }
 
-  getRecentPost() {
-    this.recentPost = this.blogPostService.getRecentPost(3);
+  getRecentPosts() {
+    this.recentPosts = this.blogPostService.getRecentPosts(3);
+  }
+
+  getMostViewPost() {
+    this.mostViewPosts = this.blogPostService.getMostViewPosts(3);
   }
 
   getCategories() {

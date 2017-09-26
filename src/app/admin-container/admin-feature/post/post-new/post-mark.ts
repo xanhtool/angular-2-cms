@@ -14,7 +14,7 @@ export class PostMark {
         this.isPublished = setting.isPublished || false;
         this.isFeatured = setting.isFeatured || false;
         this.isHome = setting.isHome || false;
-        this.publishType = setting.publishType || '';
-        this.featureType = setting.featureType || '';
+        this.publishType = setting.publishType || null;
+        this.featureType = setting.featureType || null;
     }
 }

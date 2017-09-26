@@ -6,13 +6,16 @@
     <div class="row editbar" *ngIf="authService.user | async; let user" [class.display]="user.uid == post.authorUid">
         <ol class="breadcrumb">
             <li class="active">
-                <button md-button [routerLink]="['/admin/post-edit', post.$key]"><md-icon class="fa fa-pencil fa-lg"></md-icon> Chỉnh sửa</button>
+                <button *ngIf="post.postMark.isPublished; else draftEditing" md-button [routerLink]="['/admin/post-edit', post.postOption?.slug]"><md-icon class="fa fa-pencil fa-lg"></md-icon> Chỉnh sửa</button>
+                <ng-template #draftEditing>
+                    <button md-button [routerLink]="['/admin/draft-edit', post.postOption?.slug]"><md-icon class="fa fa-pencil fa-lg"></md-icon> Chỉnh sửa</button>
+                </ng-template>
             </li>
-            <li class="active">
-                <button md-button (click)="pinPost(post,!post.postMark.isFeatured)"><md-icon [ngClass]="{'fa-star-o': post.postMark.isFeatured,'fa-star': !post.postMark.isFeatured}" class="fa fa-lg"></md-icon> Đánh dấu</button>
+            <li class="active" *ngIf="post.postMark.isPublished">
+                <button md-button (click)="markFeature(post,!post.postMark?.isFeatured)"><md-icon [ngClass]="{'fa-window-close-o': post.postMark?.isFeatured,'fa-star': !post.postMark?.isFeatured}" class="fa fa-lg"></md-icon> Nổi bật</button>
             </li>
-            <li class="active">
-                <button md-button (click)="homePost(post,post.isHome)"><md-icon [ngClass]="{'fa-home-o': post.postMark.isHome,'fa-home': !post.postMark.isHome}" class="fa fa-lg"></md-icon> Trang chủ</button>
+            <li class="active" *ngIf="post.postMark.isPublished">
+                <button md-button (click)="markHome(post,!post.postMark?.isHome)"><md-icon [ngClass]="{'fa-window-close-o': post.postMark?.isHome,'fa-home': !post.postMark?.isHome}" class="fa fa-lg"></md-icon> Trang chủ</button>
             </li>
       </ol>
   </div>

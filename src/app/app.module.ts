@@ -8,7 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment.prod';
-import 'hammerjs';
+import { Angulartics2Module, Angulartics2GoogleTagManager } from 'angulartics2';
 import 'firebase/storage';
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import 'firebase/storage';
     AdminContainerModule,
     BlogContainerModule,
     AppRoutingModule,
+    Angulartics2Module.forRoot([ Angulartics2GoogleTagManager ])
   ],
   providers: [
     Title, Meta

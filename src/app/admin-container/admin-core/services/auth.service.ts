@@ -45,22 +45,21 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('auth');
-      this.router.navigate(['/login'])
+      this.router.navigate(['/'])
     });
   }
 
-  updatePhoto(user:firebase.User,displayName,photoURL) {
+  updatePhoto(user:firebase.User,displayName,image) {
+    console.log('image',image)
     // #2: firebase
     user.updateProfile({
       displayName:displayName,
-      photoURL:photoURL
+      photoURL:image.url
     })
     .then(() => {
       // #3:/users/
       // #2: /users/
-      let updates = {};
-      updates['/users/'+user.uid+'/photoURL'] = photoURL;
-      return this.db.object('/').update(updates).then(() => this.snackbarService.openSnackBar("Đã cập nhật thông tin của bạn!"))
+      this.updateDatabaseUser(user.uid,null,null,image).then(() => this.snackbarService.openSnackBar("Đã cập nhật ảnh của bạn!"))
       })
       .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
   }
@@ -73,9 +72,7 @@ export class AuthService {
     })
     .then(() => {
       // #2: /users/
-      let updates = {};
-      updates['/users/'+user.uid+'/displayName'] = displayName;
-      return this.db.object('/').update(updates).then(() => this.snackbarService.openSnackBar("Đã cập nhật thông tin của bạn!"))
+      this.updateDatabaseUser(user.uid,displayName,null,null).then(() => this.snackbarService.openSnackBar("Đã cập nhật tên của bạn!"))
     })
     .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
     
@@ -88,12 +85,25 @@ export class AuthService {
     user.updateEmail(email)
     .then(() => {
       // #2: /users/
-      let updates = {};
-      updates['/users/'+user.uid+'/email'] = email;
-      return this.db.object('/').update(updates).then(() => this.snackbarService.openSnackBar("Đã cập nhật email của bạn!"))
+      this.updateDatabaseUser(user.uid,null,email,null).then(() => this.snackbarService.openSnackBar("Đã cập nhật email của bạn!"))
       
     })
     .catch((e) => this.snackbarService.openSnackBar("Lỗi: "+e,"Đóng",3000));
   }
+
+
+  updateDatabaseUser(uid,name=null,email=null,image=null) {
+    let updates = {};
+    if(name)  updates['/users/' + uid +'/image'] = name;
+    if(image) updates['/users/' + uid +'/image'] = image;
+    if(email) updates['/users/' + uid +'/image'] = email;
+    return this.db.object('/').update(updates)
+  }
+
+
+  getDatabaseUser(userUid) {
+    return this.db.object('/users/'+userUid);
+  }
+
 
 }

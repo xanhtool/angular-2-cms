@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private fb:FormBuilder,
   ) {
-   
+    this.authService.user.subscribe(user => this.user = user);
    }
 
   ngOnInit() {
@@ -28,25 +28,21 @@ export class ProfileComponent implements OnInit {
       displayName:'',
       image:{
         name:'',
-        url:''
+        url:'',
+        type:''
       },
       email:''
     })
   }
 
   setForm() {
-     this.authService.user.subscribe(user => {
-      this.user = user;
-      this.profileForm.patchValue({
-        displayName:user.displayName,
-        image:{url:user.photoURL},
-        email:user.email
-      })
+     this.authService.getDatabaseUser(this.user.uid).subscribe(user => {
+      this.profileForm.patchValue(user);
     })
   }
 
   updatePhoto(event) { // #1: storage
-    this.authService.updatePhoto(this.user,this.profileForm.value.displayName,event.url)
+    this.authService.updatePhoto(this.user,this.profileForm.value.displayName,event)
   }
 
   updateName() {

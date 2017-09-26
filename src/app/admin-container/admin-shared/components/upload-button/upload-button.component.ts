@@ -1,6 +1,6 @@
 import { AdminFileService } from './../../services/admin-file.service';
 import { FormGroup } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Component,ElementRef, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import 'firebase/storage';
 import * as firebase from 'firebase/app';
@@ -42,82 +42,49 @@ import {
   ],
 })
 
-export class UploadButtonComponent implements OnInit, OnChanges {
-    imageRef;
-    @Input('parentForm') parentForm:FormGroup;
-    @Input('imageControlValue') imageControlValue = {name:'',url:''};
-    @Input('controlPlace') controlPlace: string[];
-    @Input('source') source:string;
-    @Output() onDone = new EventEmitter<any>();
-    url:string ='';
+export class UploadButtonComponent implements  OnChanges {
     @ViewChild('imageInput') imageInput: ElementRef;
+    @Output() onDone = new EventEmitter<any>();
+    @Input('imageLastValue') imageValue = {name:'',url:'',type:''};
+    @Input('source') source:string = 'forget';
+    @Input('imageName') name: string;
     imageLoaded:boolean = false;
     loading: boolean = false;
     loadedPercent:number = 0;
-    constructor(private firebaseApp: FirebaseApp,private adminFileService:AdminFileService) {
-    }
+
+    constructor(private firebaseApp: FirebaseApp,private adminFileService:AdminFileService) {}
 
     ngOnChanges(changes: SimpleChanges) {
-        if(changes.imageControlValue.currentValue.url) {
-            this.setForm(changes.imageControlValue.currentValue)
+        if(changes.imageValue && changes.imageValue.currentValue.url) {
+            this.imageLoaded = true;
         }
     }
-
-    setForm(image) {
-        this.imageLoaded = true;
-        const storageRef = this.firebaseApp.storage().ref();
-        this.imageRef = storageRef.child('images/'+image.name);
-        this.url = image.url;
-    }
-
-   
-
-    ngOnInit() {
-        if(this.imageControlValue.url) {
-            this.setForm(this.imageControlValue)
-        }
-    }
-
 
     deleteImage() {
         // Delete the file
-        this.imageRef.delete().then(() => {
+        this.adminFileService.deleteImage(this.source+'/'+this.name+'.'+this.imageValue.type).then(() => {
             this.imageLoaded = false;
-            this.updateUrl(null,null);
+            this.onDone.emit({name:null,url:null,type:null})
             this.imageInput.nativeElement.value = '';
         }).catch(err => {
-            console.error('error coming!!!',err);
             this.imageLoaded = true;
         }
         );
     }
 
-    updateUrl(name,url) {
-        this.url =url;
-        this.parentForm.get(this.controlPlace).patchValue({url,name})
+    readUrl(event) {
+        if (event.target.files && event.target.files[0]) {
+            this.uploadImage(event.target.files[0])
+        }
     }
 
     uploadImage(file) {
-        // this.imageRef = storageRef.child('images/'+fileName);
-        // //Upload
-        // let uploadTask = this.imageRef.put(file);
-        // //Set Url after uploaded
-        // uploadTask
-        // // watch
-        // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,(snapshot) => {
-        //     this.loading= true;
-        //     this.loadedPercent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //     if (this.loadedPercent == 100) this.loading= false;
-        // });
         this.loadedPercent = 0; // reset loadPercent
-        const storageRef = this.firebaseApp.storage().ref();
-        const fileName = new Date().getTime()+ file.name;
-
-        this.adminFileService.uploadImage(file, this.source)
+        this.adminFileService.uploadImage(file,this.source,this.name)
         .then((snapshot) => {
-            this.updateUrl(fileName,snapshot.downloadURL);
             this.imageLoaded = true;
-            this.onDone.emit({name:fileName,url:snapshot.downloadURL})
+            let fullname = snapshot.metadata.name.split('.')
+            this.onDone.emit({name:fullname[0],url:snapshot.downloadURL,type:fullname[1]})
         })
         .catch(err => console.error('error coming!!!',err));
 
@@ -128,13 +95,10 @@ export class UploadButtonComponent implements OnInit, OnChanges {
         })
 
     }
+    
 
 
     
-    readUrl(event) {
-        if (event.target.files && event.target.files[0]) {
-            this.uploadImage(event.target.files[0])
-        }
-    }
+
 
 }

@@ -1,3 +1,9 @@
 .carousel-indicators {
     bottom: -100px
 }
+
+.wthree_banner_info_grid h3{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+}

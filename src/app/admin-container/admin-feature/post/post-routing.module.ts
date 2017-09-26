@@ -21,6 +21,12 @@ const routes: Routes = [
           component: PostNewComponent
         }
       ]},
+      { path: 'draft-edit', children: [
+        {
+          path: ':slug',
+          component: PostNewComponent
+        }
+      ]},
     ]
    },
 ];

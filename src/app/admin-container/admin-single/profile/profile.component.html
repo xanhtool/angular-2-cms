@@ -20,9 +20,10 @@
     <md-form-field class="example-full-width">
       <input mdInput placeholder="Email" formControlName="email" (blur)="updateEmail()">
     </md-form-field>
-    <app-upload-button (onDone)="updatePhoto($event)" [source]="'/users/'+user?.uid+'/'" [parentForm]="profileForm" [imageControlValue]="profileForm.get('image').value" [controlPlace]="['image']"></app-upload-button>
+    <app-upload-button (onDone)="updatePhoto($event)" [source]="'users'" [imageLastValue]="profileForm.get('image').value" [imageName]="user.uid"></app-upload-button>
   </div>
 </div>
 
 <!-- <p>Profile from database:{{user | json}}</p>
-<p>Profile form:{{profileForm.value | json}}</p> -->
+<p>Profile form:{{profileForm.value | json}}</p> 
+<p>profile image {{profileForm.get('image').value | json}}</p> -->

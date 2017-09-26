@@ -6,3 +6,7 @@
 	width: 25px;
     transform: scaleX(-1)translateX(25px)translateY(-10px);
 }
+
+:host >>> .fr-video {
+	margin: 15px;
+}

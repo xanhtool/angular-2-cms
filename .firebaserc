@@ -1,5 +1,6 @@
 {
   "projects": {
-    "staging": "apt-port-161714"
+    "staging": "apt-port-161714",
+    "default": "quickstart-9ddcf"
   }
 }

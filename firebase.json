@@ -6,6 +6,14 @@
     "public": "dist",
     "rewrites": [
       {
+        "source": "/api/v1/templates",
+        "function": "main"
+      },
+      {
+        "source": "/api/v1/campain",
+        "function": "main"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

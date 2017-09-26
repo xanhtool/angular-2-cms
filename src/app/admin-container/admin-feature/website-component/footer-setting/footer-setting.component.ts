@@ -39,7 +39,8 @@ export class FooterSettingComponent implements OnInit {
     this.footerForm = this.fb.group({
       image:this.fb.group({
         url: '',
-        name:''
+        name:'',
+        type:''
       }),
       aboutAuthor: '',
       aboutWebsite: ''
@@ -51,6 +52,10 @@ export class FooterSettingComponent implements OnInit {
       this.footerForm.patchValue(setting)
       this.footerFormSendValue = this.footerForm.value;
     });
+  }
+
+  updatePhoto(event) {
+    this.footerForm.get(['image']).setValue(event)
   }
 
   saveFooter() {

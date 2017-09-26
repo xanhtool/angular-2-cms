@@ -5,6 +5,10 @@
     }
 } 
 
+h1 {
+    display: inline-block;
+}
+
 .dropdown-menu {
     width: 600px
 }
@@ -32,9 +36,17 @@
 
 .dashboard {
     width: 80px;
-    float: left;
-    margin-top: 14px;
+    margin-right: 40px;
     transform: translateX(25px);
     cursor: pointer;
 }
 
+.navbar-brand img {
+    width: 100px;
+    height: auto;
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+}

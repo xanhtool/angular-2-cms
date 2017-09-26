@@ -38,17 +38,6 @@ export class BlogComponentService {
     });
   }
 
-  getCategoryPosts(category,orderByChild?,equalTo?,limitToFirst?) {
-    let item: FirebaseListObservable<any[]>;
-    return item = this.db.list('/categories/'+category,{
-      query:{
-        orderByChild: orderByChild,
-        equalTo: equalTo,
-        limitToFirst:limitToFirst
-      }
-    });
-  }
-
   getBanner() {
     let item: FirebaseObjectObservable<any>;
     return item = this.db.object('/banner/');
@@ -67,6 +56,10 @@ export class BlogComponentService {
   getWebSetting() {
     let item: FirebaseObjectObservable<any>;
     return item = this.db.object('/web-setting/');
+  }
+
+  subscribe(email) {
+    return this.db.list('subscribers').push({address: {email}})
   }
 
 }

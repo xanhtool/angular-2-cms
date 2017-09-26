@@ -6,3 +6,8 @@
 	width: 25px;
     transform: scaleX(-1)translateX(25px)translateY(-10px);
 }
+
+.w3agile_blog_left_grid_sub img {
+	width: 100%;
+	margin-top: 2em;
+}

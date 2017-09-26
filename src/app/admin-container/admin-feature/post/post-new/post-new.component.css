@@ -128,8 +128,8 @@ md-form-field.content /deep/ .mat-input-underline {
   background-color: #f44336;
   color: white;
   position: absolute;
-  top: -70px;
-  left: -77px;
+  top: -69px;
+  left: -90px;
 }
 
 .horizontal ul li:nth-child(5n+2) button {
@@ -137,8 +137,8 @@ md-form-field.content /deep/ .mat-input-underline {
   background-color: #2196f3;
   color: white;
   position: absolute;
-  top: -24px;
-  left: -74px;
+  top: -20px;
+  left: -78px;
 }
 
 .horizontal ul li:nth-child(5n+3) button {
@@ -183,8 +183,8 @@ md-form-field.content /deep/ .mat-input-underline {
 }
 
 .flower-loading {
-  top: -18px;
-  right: 3px;
+  top: -20px;
+  right: -22px;
   position: absolute;
 }
 
@@ -235,3 +235,42 @@ md-form-field.content /deep/ .mat-input-underline {
   top: 51px;
 }
 
+:host >>> .imgcard {
+  float: left;
+  margin: 5px 15px 10px 5px;
+  text-align: center;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+:host >>> .imgcard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+:host >>> .imgcard img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+:host >>> .imgcard-button {
+  display: inline-block;
+  margin: 5px 10px 10px 5px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+:host >>> .fr-video {
+  margin: 15px;
+}

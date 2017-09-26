@@ -1,0 +1,13 @@
+.more-post {
+    outline: none;
+    border: none;
+    background: #FFDF00;
+    color: #212121;
+    padding: 10px 0;
+    width: 30%;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2em;
+    font-weight: 600;
+}

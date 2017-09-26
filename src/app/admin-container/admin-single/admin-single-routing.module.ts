@@ -1,3 +1,4 @@
+import { EmailMarketingComponent } from './email-marketing/email-marketing.component';
 import { AdminNotfoundComponent } from './admin-notfound/admin-notfound.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './faq/faq.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
     { 
       path: 'profile', 
       component: ProfileComponent,
+    },
+    { 
+      path: 'email-marketing', 
+      component: EmailMarketingComponent,
     },
     { 
       path: '404', 
