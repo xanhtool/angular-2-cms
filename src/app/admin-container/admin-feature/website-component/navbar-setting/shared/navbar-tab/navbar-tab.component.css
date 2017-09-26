@@ -1,0 +1,18 @@
+.full-width {
+    margin-bottom: 20px;
+    display: flex;
+}
+.full-width md-form-field {
+    width: 100%;
+}
+
+.example-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.example-card md-icon {
+    position: absolute;
+    right: -10px;
+    top: -20px;
+}

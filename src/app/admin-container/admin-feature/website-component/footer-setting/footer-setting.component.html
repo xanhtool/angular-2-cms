@@ -1,0 +1,58 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Cài đặt Footer <small> Thông tin phía dưới của trang web.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+<div class="row card" [formGroup]="footerForm">
+    <!--<div class="col-lg-6">
+        <div class="custom-theme" [froalaEditor]='froalaOptions'   formControlName="aboutAuthor">Nội dung về tác giả!</div>
+    </div>-->
+    <!--<div class="col-lg-6">
+        <div class="custom-theme" [froalaEditor]='froalaOptions'   formControlName="aboutWebsite">Nội dung về website!</div>
+    </div>-->
+    <!--<div class="col-lg-12">
+        <app-upload-button [parentForm]="footerForm" getControl="url"></app-upload-button>
+    </div>-->
+
+    <md-card>
+        <md-card-header>
+            <md-card-title>Nội dung về tác giả</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <div class="row">
+                <div class="col-lg-3">
+                    <h3>Avatar</h3>
+                    <app-upload-button (onDone)="updatePhoto($event)" [source]="'footer'" [imageLastValue]="footerForm.get('image').value" [imageName]="'author-avatar'"></app-upload-button>
+                </div>
+                <div class="col-lg-8 col-lg-offset-1">
+                    <div class="custom-theme" [froalaEditor]='froalaOptions'   formControlName="aboutAuthor">Nội dung về tác giả!</div>
+                </div>
+            </div>
+        </md-card-content>
+    </md-card>
+    <md-card>
+        <md-card-header>
+            <md-card-title>Nội dung về website</md-card-title>
+        </md-card-header>
+        <md-card-content>
+                
+                <div class="custom-theme" [froalaEditor]='froalaOptions'   formControlName="aboutWebsite">Nội dung về website!</div>
+        </md-card-content>
+    </md-card>
+</div>
+
+
+ <button md-raised-button color="accent" (click)="saveFooter()">
+    <md-icon class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></md-icon> Lưu cấu hình
+</button>
+<!-- edit form{{this.footerForm.value |json}}
+
+send form{{this.footerFormSendValue | json}} -->

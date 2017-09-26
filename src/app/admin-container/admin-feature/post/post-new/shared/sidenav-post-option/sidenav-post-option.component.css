@@ -1,0 +1,78 @@
+
+
+.sidenav-post-option,.sidenav-seo-option {
+  max-width: 300px;
+  margin:20px 20px 20px 20px;
+}
+
+
+:host h4 {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.375;
+    font-weight: 400;
+}
+
+/*Upload image*/
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.5;
+}
+
+/*Upload image*/
+
+/*Input option*/
+.mat-input-container {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+/*/Input option*/
+
+.sidenav-seo-option {
+  position: absolute;
+  top:0;
+  right:-450px;
+}
+
+.sidenav-seo-option h4{
+  cursor: pointer;
+}
+
+/*post option input margin*/
+
+:host /deep/.sidenav-post-option .date-picker {
+  color: blue;
+}
+
+.sidenav-post-option h3,.sidenav-post-option .seo-button {
+  margin-bottom: 20px!important;
+}
+
+md-hint {
+  color: #d18181;
+}
+

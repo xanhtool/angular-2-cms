@@ -1,0 +1,43 @@
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Đánh giá <small> dù tốt hay dở, mọi đánh giá khách quan của bạn đều giúp ứng dụng trở nên tốt hơn.</small>
+            </h1>
+            <!--<ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>-->
+        </div>
+</div>
+
+<div class="row valuation" [formGroup]="valuationForm">
+    <div class="col-lg-12">
+        <h3>Bạn nghĩ gì về hệ thống quản lý bài viết của chúng tôi? <span class="opinion">{{valuationForm.value.think}}</span></h3> 
+        <div class="emoji" *ngFor="let item of thinks">
+            <div (click)="selectThink(item)" [class.emoji-big]="valuationForm.value.think == item.option">{{item.icon}}</div>
+        </div>  
+    </div> 
+    <div class="col-lg-12">
+        <h3>Bạn có đạt được mục đích của mình khi sử dụng hệ thống?  <span class="opinion">{{valuationForm.value.purpose}}</span></h3>
+        <div class="emoji" *ngFor="let item of purposes">
+            <div (click)="selectPurpose(item)" [class.emoji-big]="valuationForm.value.purpose == item.option">{{item.icon}}</div>
+        </div>  
+    </div>
+    <div class="col-lg-12">
+        <h3>Hệ thống có dễ sử dụng với bạn không?  <span class="opinion">{{valuationForm.value.easy}}</span></h3>
+        <div class="emoji" *ngFor="let item of easy">
+            <div (click)="selectEasy(item)" [class.emoji-big]="valuationForm.value.easy == item.option">{{item.icon}}</div>
+        </div>  
+    </div>
+    <div class="col-lg-12">
+        <h3>Hệ thống trông đẹp chứ?  <span class="opinion">{{valuationForm.value.appearance}}</span></h3>
+        <div class="emoji" *ngFor="let item of appearance">
+            <div (click)="selectAppearance(item)" [class.emoji-big]="valuationForm.value.appearance == item.option">{{item.icon}}</div>
+        </div>  
+    </div>
+    <button (click)="sendValuation()" md-raised-button color="primary" class="send"><span><i class="fa fa-paper-plane-o send-icon" aria-hidden="true"></i> </span> Gửi đánh giá</button>
+</div>
+
+<!-- <p>Form value:{{valuationForm.value | json}}</p>
+<p>Form Valid:{{valuationForm.valid}}</p> -->

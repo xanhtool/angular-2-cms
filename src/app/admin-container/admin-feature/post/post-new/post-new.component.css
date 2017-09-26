@@ -1,0 +1,276 @@
+:host .title,.subtitle,.content,text-area ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #777;
+  font-weight: 400
+}
+
+:host .title,.subtitle,.content,text-area ::-moz-placeholder { /* Firefox 19+ */
+  color: #777;
+  font-weight: 400
+}
+
+:host .title,.subtitle,.content,text-area :-ms-input-placeholder { /* IE 10+ */
+  color: #777;
+}
+
+:host .title,.subtitle,.content,text-area :-moz-placeholder { /* Firefox 18- */
+  color: #777;
+  font-weight: 400
+}
+
+.title {
+    width: 100%;
+    font-size: x-large
+}
+
+.subtitle {
+    width: 100%;
+    font-size: medium;
+}
+
+:host /deep/ .subtitle textarea {
+    height: 16px!;
+}
+
+.content {
+    width: 100%;
+    font-size: medium
+}
+
+md-form-field.content /deep/ .mat-input-underline {
+		border-top-width: 1px;
+		border-color: red;
+    display: none
+}
+
+.left-screen {
+  border-right: solid 0.5px #DFE1E3;
+  padding-top:10px;
+}
+
+.right-screen {
+  height: 90%;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding-left: 6.5%;
+  margin-top: 5%;
+}
+
+
+
+.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+.icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+
+.modal-header p {
+  word-wrap: break-word;
+}
+
+.modal-header p {
+  word-wrap: break-word;
+}
+
+.modal-body p {
+  word-wrap: break-word;
+}
+
+
+.fab-hover {
+  transform: scaleY(0.8) scaleX(0.8) translateY(0px) translateX(40px); opacity: 0;
+}
+
+/*FOR PREVIEW BUTTON*/
+.model-preview a {
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    z-index: 1;
+}
+
+/*for FAB .horizontal button*/
+
+.fixed-action-btn {
+  position: fixed;
+  top: 27px;
+  right: 17px;
+  z-index: 1; 
+}
+
+/* .horizontal ul {
+  position: fixed;
+  top: 75px;
+  right:80px;
+  z-index: 1; 
+}
+
+.cogs button{
+  position: fixed;
+  top: 55px;
+  right: 25px;
+  opacity: 0.5;
+  z-index: 1; 
+} */
+
+.horizontal > button,ul {
+  display: inline-block
+}
+
+.horizontal li {
+  display: inline-block;
+  transition: .3s ease all;
+  opacity: 0;
+  /*transform: scaleY(0 .4) scaleX(0.4) translateY(0px) translateX(40px);*/
+  transform: scaleY(1) scaleX(1) translateY(0px) translateX(0px);
+}
+
+.horizontal ul li:nth-child(5n+1) button {
+  transition-delay: 0.15s;
+  background-color: #f44336;
+  color: white;
+  position: absolute;
+  top: -69px;
+  left: -90px;
+}
+
+.horizontal ul li:nth-child(5n+2) button {
+  transition-delay: 0.12s;
+  background-color: #2196f3;
+  color: white;
+  position: absolute;
+  top: -20px;
+  left: -78px;
+}
+
+.horizontal ul li:nth-child(5n+3) button {
+  transition-delay: 0.09s;
+  background-color:#4caf50;
+  color: white;
+  position: absolute;
+  top: -4px;
+  left: -33px;
+}
+
+.horizontal ul li:nth-child(5n+4) button {
+  transition-delay: 0.06s;
+  background-color: #ffeb3b;
+  color: white;
+}
+
+.horizontal ul li:nth-child(5n+5) button {
+  transition-delay: 0.03s;
+}
+
+
+.horizontal .cogs:hover button {
+  transform: scaleY(1.3) scaleX(1.3) translateY(0px) translateX(0px);
+  opacity: 1;
+  transition: .3s ease all;
+}
+
+.cogs:hover ~ ul>li {
+  transform: scaleY(1.3) scaleX(1.3) translateY(0px) translateX(0px);
+  opacity: 1;
+  transition: .3s ease all;
+}
+
+.horizontal ul li:hover {
+  transform: scaleY(1.4) scaleX(1.4);
+  opacity: 1;
+}
+
+.showFlower li {
+  opacity: 1;
+}
+
+.flower-loading {
+  top: -20px;
+  right: -22px;
+  position: absolute;
+}
+
+
+/* END for FAB .horizontal button */
+
+.example-container {
+  width: 500px;
+  /*border: 1px solid rgba(0, 0, 0, 0.5);*/
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+:host >>>.fr-toolbar {
+  z-index: 1;
+}
+
+:host >>> .custom-theme.fr-box.fr-basic .fr-element {
+  min-height: 400px;
+  overflow-y: scroll;
+  padding-bottom:50px;
+}
+
+:host >>> .mat-select-trigger {
+  height: 50px;
+  font-size: 24px;
+  min-width: 240px;
+}
+
+.mat-sidenav-container,:host >>>.mat-sidenav-content {
+    transform: none !important;
+}
+
+/*this is for sidebar*/
+:host >>> .mat-sidenav {
+  position: fixed;
+  top: 51px;
+}
+
+:host >>> .imgcard {
+  float: left;
+  margin: 5px 15px 10px 5px;
+  text-align: center;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+:host >>> .imgcard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+:host >>> .imgcard img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+}
+
+:host >>> .imgcard-button {
+  display: inline-block;
+  margin: 5px 10px 10px 5px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+:host >>> .fr-video {
+  margin: 15px;
+}

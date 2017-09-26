@@ -1,0 +1,22 @@
+.example-card.mat-card {
+    width: 50%;
+    margin: 5% auto 0 auto;
+}
+
+.example-half-width {
+    width: 50%;
+}
+
+.email-width {
+    width: 40%;
+    margin-left: 5%;
+}
+
+md-card-actions,.loader {
+    display: flex;
+    justify-content: center;
+}
+
+.loader app-admin-loader {
+    margin-top: 40px;
+}

@@ -1,0 +1,58 @@
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+/*avatar column width*/
+.column1 {
+  flex: 0 0 50px;
+}
+
+.post-avatar {
+  width: 70%;
+  height: auto;
+}
+
+.post-owner {
+  border: red 1px solid;
+  border-radius: 100%;
+}
+
+/*truncate*/
+.truncate {
+  min-width: 0;
+}
+
+.truncate p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.removeItem {
+  flex: 0 0 10px;
+  margin-left: 10px;
+}
+
+.display {
+  display: block!important;
+}
+
+.delete-button{
+  display:none;
+}

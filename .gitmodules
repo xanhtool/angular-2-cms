@@ -1,0 +1,3 @@
+[submodule "src/app/admin-container"]
+	path = src/app/admin-container
+	url = https://github.com/xanhtool/admin-cms.git

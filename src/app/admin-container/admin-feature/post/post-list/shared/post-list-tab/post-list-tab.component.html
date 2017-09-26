@@ -1,0 +1,45 @@
+<div class="example-container mat-elevation-z8">
+  <ng-template #loading>
+    Đang lấy bài viết...
+  </ng-template>
+
+  <p *ngIf="noData | async">
+    Không có bài viết nào!
+  </p>
+
+  <md-table *ngIf="(eventService.subscribeEvent('listLoading') | async) == false ;else loading" [dataSource]="dataSource" #table>
+
+     <!-- Author Column -->
+    <ng-container cdkColumnDef="author" style="width:2px" >
+      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+      <md-cell  class="column1" *cdkCellDef="let row"> 
+        <img *ngIf="authService.user | async; let user" class="post-avatar" [class.post-owner]="user.uid == row.authorUid" src="user.image || ../../../../../../../assets/images/avatar.png" [alt]="row.postOption?.author" [md-tooltip]="row.postOption?.author">
+      </md-cell>
+      <!-- <md-cell [style.display]="row.postOption?.author == 'Quyền Anh' ? 'none' : ''" class="column1" *cdkCellDef="let row"> 
+        <img  class="post-avatar" src="../../../../../../../assets/images/avatar.png" alt="">
+      </md-cell> -->
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container cdkColumnDef="title">
+      <md-header-cell *cdkHeaderCellDef> Title </md-header-cell>
+      <md-cell class="truncate" *cdkCellDef="let row">
+        <p><b>{{row.title}}</b></p> 
+      </md-cell>
+    </ng-container>
+
+    <!-- button Column -->
+    <ng-container cdkColumnDef="button">
+      <md-header-cell *cdkHeaderCellDef>button</md-header-cell>
+      <md-cell  class="removeItem" *cdkCellDef="let row">
+        <button class="delete-button" [class.display]="user.uid == row.authorUid"   *ngIf="authService.user | async; let user"  md-button (click)="deletePost(row)">
+          <md-icon class="fa fa-trash-o fa-lg" aria-hidden="true"></md-icon>
+        </button>
+      </md-cell>
+    </ng-container>
+
+    <!--<md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>-->
+    <md-header-row *cdkHeaderRowDef="[]"></md-header-row>
+    <md-row (click)="viewPost(row)" *cdkRowDef="let row; columns: displayedColumns;" ></md-row>
+  </md-table>
+</div>
